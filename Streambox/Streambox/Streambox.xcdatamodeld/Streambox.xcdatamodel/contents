@@ -8,6 +8,7 @@
         <attribute name="downloadPercent" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isDownloading" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="belongsToPlaylists" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Playlist" inverseName="playlistSongs" inverseEntity="Playlist" syncable="YES"/>
     </entity>
@@ -17,7 +18,7 @@
     </entity>
     <elements>
         <element name="Playlist" positionX="207" positionY="-1" width="119" height="75"/>
-        <element name="Song" positionX="-54" positionY="0" width="137" height="120"/>
+        <element name="Song" positionX="-54" positionY="0" width="137" height="135"/>
         <element name="User" positionX="97" positionY="-102" width="128" height="75"/>
     </elements>
 </model>

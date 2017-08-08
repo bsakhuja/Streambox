@@ -73,7 +73,7 @@ class SongsViewController: UIViewController, NVActivityIndicatorViewable, AVAudi
         // Update colors and fonts
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!]
-
+        
         
         // Used for loading songs in from the add folders view controller
         NotificationCenter.default.addObserver(forName: Notification.Name("DoneInitializing"), object: nil, queue: nil) { (notification) in
@@ -293,7 +293,15 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.songArtistLabel.alpha = 1
             cell.songTitleLabel.text = text
             cell.songTitleLabel.numberOfLines = 1
-            cell.downloadProgressBar.progress = song.downloadPercent            
+            
+            if song.isDownloading
+            {
+                cell.downloadProgressBar.progress = song.downloadPercent
+            } else
+            {
+                cell.downloadProgressBar.alpha = 0
+            }
+            
             if indexPath.row == 0
             {
                 indexPathOfFirstSong = indexPath
@@ -342,7 +350,7 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
     }
-
+    
     
     // Deleting songs
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -390,8 +398,11 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         {
             path = "id:" + (selectedSong.id)!
         }
-
+        
+        // Set the is downloading states to true
         SongPlayerHelper.isSongDownloading = true
+        selectedSong.isDownloading = true
+        
         DropboxHelper.downloadFile(song: selectedSong, directory: path ?? "", progressBar: (downloadProgress)!, onCompletion: { (downloadedSong) in
             SongPlayerHelper.currentSong = downloadedSong
             
@@ -407,6 +418,9 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
                 downloadProgress?.alpha = 0.0
             }
             
+            // Set the is downloading states to false
+            SongPlayerHelper.isSongDownloading = false
+            selectedSong.isDownloading = false
             
             SongPlayerHelper.currentSongIndexInQueue = (self.selectedSongIndexPath?.row)!
             SongPlayerHelper.currentSongTitle = selectedSong.title
@@ -431,8 +445,14 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         downloadProgress?.alpha = 1.0
         downloadProgress?.progress = 0
         
+        
+        
         let path = "id:" + selectedSong.id!
-//        selectedSong.isDownloading = true
+        
+        // Set the is downloading states to true
+        SongPlayerHelper.isSongDownloading = true
+        selectedSong.isDownloading = true
+        
         DropboxHelper.downloadFile(song: selectedSong, directory: path, progressBar: (downloadProgress)!, onCompletion: { (downloadedSong) in
             SongPlayerHelper.currentSong = downloadedSong
             
@@ -448,8 +468,10 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
                 downloadProgress?.alpha = 0.0
             }
             
-//            selectedSong.isDownloading = false
+            // Set the is downloading states to false
             SongPlayerHelper.isSongDownloading = false
+            selectedSong.isDownloading = false
+            
             SongPlayerHelper.currentSongIndexInQueue = (self.selectedSongIndexPath?.row)!
             self.playSong(song: SongPlayerHelper.currentSong!)
             
