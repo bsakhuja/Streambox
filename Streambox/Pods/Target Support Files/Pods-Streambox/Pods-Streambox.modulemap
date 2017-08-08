@@ -1,0 +1,6 @@
+framework module Pods_Streambox {
+  umbrella header "Pods-Streambox-umbrella.h"
+
+  export *
+  module * { export * }
+}

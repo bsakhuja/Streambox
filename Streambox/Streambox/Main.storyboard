@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="byZ-Bu-46g">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main Tab Bar View Controller-->
+        <scene sceneID="ddG-Vc-ZSa">
+            <objects>
+                <tabBarController storyboardIdentifier="mainVC" id="byZ-Bu-46g" customClass="MainTabBarViewController" customModule="Streambox" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="ELH-dR-lAC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="selectedImageTintColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="TwB-R8-Crf" kind="relationship" relationship="viewControllers" id="MlC-cd-5cw"/>
+                        <segue destination="GcE-gs-XwP" kind="relationship" relationship="viewControllers" id="GRs-vi-KPy"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4WQ-dh-hOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="558" y="5"/>
+        </scene>
+        <!--Songs-->
+        <scene sceneID="Uyl-nI-sM4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Songs" id="TwB-R8-Crf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Songs" image="song" id="1d3-DJ-A7o"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TA1-y8-Aql" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="189" y="533"/>
+        </scene>
+        <!--Playlists-->
+        <scene sceneID="R3L-nU-M7m">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Playlists" id="GcE-gs-XwP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Playlists" image="playlist" id="XjS-Nh-68g"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cQp-5V-ZQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="918" y="533"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="playlist" width="20" height="20"/>
+        <image name="song" width="20" height="20"/>
+    </resources>
+</document>

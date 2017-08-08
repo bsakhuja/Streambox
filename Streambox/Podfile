@@ -1,0 +1,9 @@
+use_frameworks!
+
+target 'Streambox' do
+
+  pod 'SwiftyDropbox'
+  pod 'NVActivityIndicatorView'
+  pod 'Fabric'
+  pod 'Crashlytics'  
+end
