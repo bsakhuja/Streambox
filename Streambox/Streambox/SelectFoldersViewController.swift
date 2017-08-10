@@ -156,7 +156,7 @@ extension SelectFoldersViewController: UITableViewDataSource, UITableViewDelegat
         DropboxHelper.hasSubdirectory(filePath: filePath ?? "", onCompletion: { (containsFiles) in
             if containsFiles != nil
             {
-                cell.folderIndicator.alpha = 1
+                cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
             }
         })
         

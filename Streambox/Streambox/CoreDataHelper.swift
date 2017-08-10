@@ -45,6 +45,22 @@ class CoreDataHelper
         saveSong()
     }
     
+    // delete all songs
+    static func deleteAllSongs()
+    {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Song")
+        let deleteAllRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do
+        {
+            try managedContext.execute(deleteAllRequest)
+        }
+        catch
+        {
+            print(error)
+        }
+    }
+    
     // retrieve all songs
     static func retrieveSongs() -> [Song]
     {
@@ -98,6 +114,22 @@ class CoreDataHelper
         return []
     }
     
+    // delete all users
+    static func deleteAllUsers()
+    {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        let deleteAllRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do
+        {
+            try managedContext.execute(deleteAllRequest)
+        }
+        catch
+        {
+            print(error)
+        }
+    }
+    
     
     // MARK: - Playlist Static Functions
     static func newPlaylist() -> Playlist
@@ -121,6 +153,22 @@ class CoreDataHelper
     {
         managedContext.delete(playlist)
         savePlaylist()
+    }
+    
+    // delete all playlists
+    static func deleteAllPlaylists()
+    {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Playlist")
+        let deleteAllRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do
+        {
+            try managedContext.execute(deleteAllRequest)
+        }
+        catch
+        {
+            print(error)
+        }
     }
     
     static func retrievePlaylists() -> [Playlist]

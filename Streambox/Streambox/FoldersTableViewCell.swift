@@ -19,7 +19,6 @@ class FoldersTableViewCell: UITableViewCell
     // MARK: - Properties
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet var checkbox: UIButton!
-    @IBOutlet weak var folderIndicator: UIImageView!
 
     var entryOfThisCell: Entry?
     var rowOfThisCell = 0
@@ -32,7 +31,6 @@ class FoldersTableViewCell: UITableViewCell
     {
         super.awakeFromNib()
         self.itemNameLabel.lineBreakMode = .byTruncatingMiddle  // truncate text in the middle
-        self.folderIndicator.alpha = 0
     }
 
     override func prepareForReuse()

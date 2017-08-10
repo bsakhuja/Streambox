@@ -47,30 +47,36 @@ class LoginViewController: UIViewController {
                                                         } else {
                                                             UIApplication.shared.openURL(url)
                                                         }
+                                                        // Verify user is logged into Dropbox
+                                                        if let client = DropboxClientsManager.authorizedClient
+                                                        {
+                                                            
+                                                            // Get the current user's account info
+                                                            client.users.getCurrentAccount().response { response, error in
+                                                                if let account = response
+                                                                {
+                                                                    let user = CoreDataHelper.newUser()
+                                                                    user.id = account.accountId
+                                                                    user.email = account.email
+                                                                    
+                                                                    
+                                                                    Answers.logSignUp(withMethod: "Using Dropbox API", success: 1, customAttributes: [user.email!: user])
+                                                                    // switch to main view controller
+                                                                    self.switchToMainViewController()
+                                                                    
+                                                                    
+                                                                }
+                                                                else
+                                                                {
+                                                                    print(error!)
+                                                                }
+                                                            }
+                                                        }
         })
         
         
         
-        // Verify user is logged into Dropbox
-        if let client = DropboxClientsManager.authorizedClient {
-            
-            // Get the current user's account info
-            client.users.getCurrentAccount().response { response, error in
-                if let account = response {
-                    let user = CoreDataHelper.newUser()
-                    user.id = account.accountId
-                    user.email = account.email
-                    
-                    Answers.logSignUp(withMethod: "Using Dropbox API", success: 1, customAttributes: [user.email!: user])
-                    // switch to main view controller
-                    self.switchToMainViewController()
-                    
-                    
-                } else {
-                    print(error!)
-                }
-            }
-        }
+        
     }
     
     

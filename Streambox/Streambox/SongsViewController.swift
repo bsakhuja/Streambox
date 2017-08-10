@@ -134,6 +134,7 @@ class SongsViewController: UIViewController, NVActivityIndicatorViewable, AVAudi
             // self.currentSongLabel.text = SongPlayerHelper.audioPlayer.
             
         }
+        tableView.reloadData()
     }
     
     func reloadSongs()

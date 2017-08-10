@@ -20,7 +20,7 @@
 		0605CEEE1F10332400FA77AC /* PlaylistDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEED1F10332400FA77AC /* PlaylistDetailViewController.swift */; };
 		060960EF1F314AB300A57606 /* SongControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060960EE1F314AB200A57606 /* SongControlsView.swift */; };
 		060D194D1F2F967A00F8F825 /* SongDownloadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D194C1F2F967A00F8F825 /* SongDownloadProgressView.swift */; };
-		061DF8E51F38CFA500C05EDE /* AppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061DF8E41F38CFA500C05EDE /* AppInfoViewController.swift */; };
+		061DF8E51F38CFA500C05EDE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061DF8E41F38CFA500C05EDE /* SettingsViewController.swift */; };
 		06262C951F200FD0006878B1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06262C941F200FD0006878B1 /* AVFoundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		063F6ADF1F2BA0C10001FB07 /* PlaylistSongsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063F6ADE1F2BA0C10001FB07 /* PlaylistSongsTableViewCell.swift */; };
 		063FE6381F0EF8B700311EA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063FE6371F0EF8B700311EA7 /* AppDelegate.swift */; };
@@ -86,7 +86,7 @@
 		060960EE1F314AB200A57606 /* SongControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongControlsView.swift; sourceTree = "<group>"; };
 		060D194C1F2F967A00F8F825 /* SongDownloadProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDownloadProgressView.swift; sourceTree = "<group>"; };
 		061363831F2D4A290093346D /* Lato */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Lato; path = "/Users/briansakhuja/Dropbox/Xcode/Make School/Streambox/StreamboxNew/Streambox/Lato"; sourceTree = "<absolute>"; };
-		061DF8E41F38CFA500C05EDE /* AppInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfoViewController.swift; sourceTree = "<group>"; };
+		061DF8E41F38CFA500C05EDE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		06262C941F200FD0006878B1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		063F6ADE1F2BA0C10001FB07 /* PlaylistSongsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistSongsTableViewCell.swift; sourceTree = "<group>"; };
 		063FE6341F0EF8B700311EA7 /* Streambox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Streambox.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -241,7 +241,7 @@
 				069CDAF91F13F2E400F4CBE8 /* AddSongsToPlaylistViewController.swift */,
 				06F24BED1F0F03D5009FA14D /* SelectFoldersViewController.swift */,
 				063FE6391F0EF8B700311EA7 /* LoginViewController.swift */,
-				061DF8E41F38CFA500C05EDE /* AppInfoViewController.swift */,
+				061DF8E41F38CFA500C05EDE /* SettingsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -501,7 +501,7 @@
 				06F24BEE1F0F03D5009FA14D /* SelectFoldersViewController.swift in Sources */,
 				060524A21F22B6DE004E7551 /* Entry.swift in Sources */,
 				060D194D1F2F967A00F8F825 /* SongDownloadProgressView.swift in Sources */,
-				061DF8E51F38CFA500C05EDE /* AppInfoViewController.swift in Sources */,
+				061DF8E51F38CFA500C05EDE /* SettingsViewController.swift in Sources */,
 				069DA1C31F30F39E00A0B285 /* SongPlayerHelper.swift in Sources */,
 				063FE63A1F0EF8B700311EA7 /* LoginViewController.swift in Sources */,
 				06F71E0C1F2A4F1E000A83E5 /* CoreDataHelper.swift in Sources */,
