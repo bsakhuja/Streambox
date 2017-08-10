@@ -52,13 +52,13 @@
                                                     <color key="trackTintColor" red="0.14557123180000001" green="0.49301892520000001" blue="0.8667101264" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </progressView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song title" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnk-hK-PV0">
-                                                    <rect key="frame" x="55" y="5" width="310" height="19"/>
+                                                    <rect key="frame" x="55" y="7" width="310" height="19"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download song to update artist name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5K-b0-7jq">
-                                                    <rect key="frame" x="55" y="42.5" width="310" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download song to update information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5K-b0-7jq">
+                                                    <rect key="frame" x="55" y="40.5" width="310" height="17"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -72,9 +72,9 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Pnk-hK-PV0" firstAttribute="top" secondItem="yMC-8R-kha" secondAttribute="top" constant="5" id="7aL-UO-klG"/>
+                                                <constraint firstItem="Pnk-hK-PV0" firstAttribute="top" secondItem="yMC-8R-kha" secondAttribute="top" constant="7" id="7aL-UO-klG"/>
                                                 <constraint firstAttribute="trailing" secondItem="Pnk-hK-PV0" secondAttribute="trailing" constant="10" id="Aat-gy-OlJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="X5K-b0-7jq" secondAttribute="bottom" constant="5" id="F05-zy-ga3"/>
+                                                <constraint firstAttribute="bottom" secondItem="X5K-b0-7jq" secondAttribute="bottom" constant="7" id="F05-zy-ga3"/>
                                                 <constraint firstItem="Pnk-hK-PV0" firstAttribute="leading" secondItem="s6u-i6-ju1" secondAttribute="trailing" constant="10" id="Gkc-6e-9xm"/>
                                                 <constraint firstAttribute="trailing" secondItem="X5K-b0-7jq" secondAttribute="trailing" constant="10" id="OmV-rJ-Nsq"/>
                                                 <constraint firstItem="gZc-Wc-hZI" firstAttribute="leading" secondItem="yMC-8R-kha" secondAttribute="leadingMargin" constant="-10" id="Pxk-zD-ZcR"/>

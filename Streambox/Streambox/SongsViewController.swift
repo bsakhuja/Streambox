@@ -165,6 +165,7 @@ class SongsViewController: UIViewController, NVActivityIndicatorViewable, AVAudi
     @IBAction func playPauseButtonTapped(_ sender: UIButton)
     {
         Answers.logCustomEvent(withName: "Play/Pause Button Tapped", customAttributes: nil)
+        
         if SongPlayerHelper.currentSong == nil
         {
             if !SongPlayerHelper.isSongDownloading && songs.count > 0
@@ -308,6 +309,22 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
                 indexPathOfFirstSong = indexPath
             }
             
+            // update the song artist label
+            if song.artist != nil
+            {
+                cell.songArtistLabel.text = song.artist
+            }
+            
+            // Update the song artwork
+            if song.artwork != nil
+            {
+                cell.artworkImageView.image = UIImage(data: song.artwork! as Data)
+            }
+            else
+            {
+                cell.artworkImageView.image = #imageLiteral(resourceName: "white")
+            }
+            
             return cell
         }
     }
@@ -355,7 +372,7 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
     
     // Deleting songs
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if filteredSongs.count > 0
+        if filteredSongs.count > 1
         {
             if editingStyle == .delete
             {
@@ -391,6 +408,8 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         downloadProgress?.alpha = 1.0
         downloadProgress?.progress = 0
         
+
+        
         if (selectedSong.id?.hasPrefix("id:"))!
         {
             path = selectedSong.id
@@ -404,8 +423,16 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         SongPlayerHelper.isSongDownloading = true
         selectedSong.isDownloading = true
         
-        DropboxHelper.downloadFile(song: selectedSong, directory: path ?? "", progressBar: (downloadProgress)!, onCompletion: { (downloadedSong) in
-            SongPlayerHelper.currentSong = downloadedSong
+        DropboxHelper.downloadFileAsURL(song: selectedSong, directory: path ?? "", progressBar: (downloadProgress)!, onCompletion: { (downloadedSongURL) in
+            
+            // set the song player helper's current song info
+            SongPlayerHelper.currentSongURL = downloadedSongURL
+            SongPlayerHelper.currentSong = selectedSong
+            
+            // Update the id3 tags
+            SongPlayerHelper.getID3Tags()
+
+
             
             // present the song controls and hide the progress bar
             UIView.animate(withDuration: 0.05) {
@@ -419,13 +446,22 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
                 downloadProgress?.alpha = 0.0
             }
             
+            self.tableView.reloadData()
+            
             // Set the is downloading states to false
             SongPlayerHelper.isSongDownloading = false
             selectedSong.isDownloading = false
             
             SongPlayerHelper.currentSongIndexInQueue = (self.selectedSongIndexPath?.row)!
-            SongPlayerHelper.currentSongTitle = selectedSong.title
-            self.playSong(song: SongPlayerHelper.currentSong!)
+            
+            selectedSong.title = SongPlayerHelper.currentSongTitle
+            selectedSong.artist = SongPlayerHelper.currentSongArtist
+            selectedSong.artwork = UIImagePNGRepresentation(SongPlayerHelper.currentSongArtwork!)! as NSData
+            
+            // show in now playing info center
+            SongPlayerHelper.updateNowPlayingInfoCenter()
+            
+            self.playSongAsURL(songURL: downloadedSongURL!)
             
         })
         
@@ -440,13 +476,12 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         let downloadProgress = songCell?.downloadProgressBar
         self.selectedSongIndexPath = indexPathOfFirstSong
         self.lastSongIndexPath = indexPathOfFirstSong
+        
         SongPlayerHelper.currentSongTitle = selectedSong.title
         
         // Present the progress bar and set the progress to 0
         downloadProgress?.alpha = 1.0
         downloadProgress?.progress = 0
-        
-        
         
         let path = "id:" + selectedSong.id!
         
@@ -454,8 +489,11 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         SongPlayerHelper.isSongDownloading = true
         selectedSong.isDownloading = true
         
-        DropboxHelper.downloadFile(song: selectedSong, directory: path, progressBar: (downloadProgress)!, onCompletion: { (downloadedSong) in
-            SongPlayerHelper.currentSong = downloadedSong
+        DropboxHelper.downloadFileAsURL(song: selectedSong, directory: path, progressBar: (downloadProgress)!, onCompletion: { (downloadedSongURL) in
+            // set the song player helper's current song info
+            SongPlayerHelper.currentSongURL = downloadedSongURL
+            SongPlayerHelper.currentSong = selectedSong
+
             
             // present the song controls and hide the progress bar
             UIView.animate(withDuration: 0.05) {
@@ -474,20 +512,20 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
             selectedSong.isDownloading = false
             
             SongPlayerHelper.currentSongIndexInQueue = (self.selectedSongIndexPath?.row)!
-            self.playSong(song: SongPlayerHelper.currentSong!)
+            self.playSongAsURL(songURL: downloadedSongURL!)
             
         })
         
     }
-    
+
     // Function that handles playing the song with AVAudioPlayer
-    func playSong(song: Data)
+    func playSongAsURL(songURL: URL)
     {
         
         do {
             // sets the default image to pause since the player presents itself when a song is playing
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            SongPlayerHelper.audioPlayer = try AVAudioPlayer(data: SongPlayerHelper.currentSong!)
+            SongPlayerHelper.audioPlayer = try AVAudioPlayer(contentsOf: songURL)
             SongPlayerHelper.audioPlayer.delegate = self
             SongPlayerHelper.audioPlayer.prepareToPlay()
             
@@ -524,7 +562,7 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
     }
-    
+
     // Convert to minutes and seconds
     func secondsToMinutesSeconds (seconds : Int) -> (Int, Int) {
         return ((seconds % 3600) / 60, (seconds % 3600) % 60)
@@ -587,6 +625,7 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         
         tableView.reloadData()
     }
+    
     
     // Set up the info center
     //    private func setupNowPlayingInfoCenter() {

@@ -233,8 +233,8 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
             path = "id:" + (selectedSong?.id)!
         }
         SongPlayerHelper.isSongDownloading = true
-        DropboxHelper.downloadFile(song: selectedSong!, directory: path ?? "", progressBar: (downloadProgress)!, onCompletion: { (downloadedSong) in
-            SongPlayerHelper.currentSong = downloadedSong
+        DropboxHelper.downloadFileAsURL(song: selectedSong!, directory: path ?? "", progressBar: (downloadProgress)!, onCompletion: { (downloadedSongURL) in
+            SongPlayerHelper.currentSongURL = downloadedSongURL
             
             // present the song controls and hide the progress bar
             UIView.animate(withDuration: 0.05) {
@@ -251,7 +251,7 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
             SongPlayerHelper.isSongDownloading = false
             SongPlayerHelper.currentSongIndexInQueue = (self.selectedRow?.row)!
             SongPlayerHelper.currentSongTitle = selectedSong?.title
-            self.playSong(song: SongPlayerHelper.currentSong!)
+            self.playSongAsURL(songURL: SongPlayerHelper.currentSongURL!)
             
         })
         
@@ -274,8 +274,8 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
         
         let path = "id:" + (selectedSong?.id)!
         SongPlayerHelper.isSongDownloading = true
-        DropboxHelper.downloadFile(song: selectedSong!, directory: path, progressBar: (downloadProgress)!, onCompletion: { (downloadedSong) in
-            SongPlayerHelper.currentSong = downloadedSong
+        DropboxHelper.downloadFileAsURL(song: selectedSong!, directory: path, progressBar: (downloadProgress)!, onCompletion: { (downloadedSongURL) in
+            SongPlayerHelper.currentSongURL = downloadedSongURL
             
             // present the song controls and hide the progress bar
             UIView.animate(withDuration: 0.05) {
@@ -291,20 +291,20 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
             
             SongPlayerHelper.isSongDownloading = false
             SongPlayerHelper.currentSongIndexInQueue = (self.selectedRow?.row)!
-            self.playSong(song: SongPlayerHelper.currentSong!)
+            self.playSongAsURL(songURL: SongPlayerHelper.currentSongURL!)
             
         })
         
     }
     
     // Function that handles playing the song with AVAudioPlayer
-    func playSong(song: Data)
+    func playSongAsURL(songURL: URL)
     {
         
         do {
             // sets the default image to pause since the player presents itself when a song is playing
             playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            SongPlayerHelper.audioPlayer = try AVAudioPlayer(data: SongPlayerHelper.currentSong!)
+            SongPlayerHelper.audioPlayer = try AVAudioPlayer(contentsOf: songURL)
             SongPlayerHelper.audioPlayer.delegate = self
             SongPlayerHelper.audioPlayer.prepareToPlay()
             
