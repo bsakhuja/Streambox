@@ -91,6 +91,7 @@ struct DropboxHelper
         
     }
     
+    
     // Download a file at the given directory
     static func downloadFile(song: Song, directory: String, progressBar: UIProgressView, onCompletion: @escaping (Data?) -> Void)
     {
@@ -118,6 +119,47 @@ struct DropboxHelper
             }
         }
     }
+    
+    
+    // Download a file at the given directory
+    static func downloadFileAsURL(song: Song, directory: String, progressBar: UIProgressView, onCompletion: @escaping (URL?) -> Void)
+    {
+        if let client = DropboxClientsManager.authorizedClient
+        {
+            let destination : (URL, HTTPURLResponse) -> URL = { temporaryURL, response in
+                let fileManager = FileManager.default
+                let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                
+                // generate a unique name for this file in case we've seen it before
+                let UUID = NSUUID().uuidString
+                let pathComponent = "\(UUID)-\(response.suggestedFilename!)"
+                
+                return directoryURL.appendingPathComponent(pathComponent)
+            }
+            
+            client.files.download(path: directory, destination: destination)
+                .response { response, error in
+                    if let response = response {
+                        let responseMetadata = response.0
+                        print(responseMetadata)
+                        
+                        let fileContents = response.1
+                        onCompletion(fileContents)
+                    } else if let error = error {
+                        print(error)
+                        onCompletion(nil)
+                    }
+                }
+                .progress { progressData in
+                    //print(progressData)
+                    downloadProgress = progressData.fractionCompleted
+                    song.downloadPercent = Float(downloadProgress)
+                    progressBar.progress = Float(downloadProgress)
+            }
+        }
+    }
+    
+    
     
     
     // Cancel downloading a file at the given directory

@@ -16,6 +16,7 @@ class SongPlayerHelper: NSObject, AVAudioPlayerDelegate
     static var songQueue = [Song]()
     static var currentSongIndexInQueue: Int = 0
     static var currentSong: Data?
+    static var currentSongURL: URL?
     static var isSongDownloading = false
     static var isSongLoaded = false
     
@@ -30,5 +31,4 @@ class SongPlayerHelper: NSObject, AVAudioPlayerDelegate
     // TODO: - GET URL
 //    static let playerItem = AVPlayerItem(url: )
 //    static let metadataList = playerItem.asset.metadata
-    
 }
