@@ -37,6 +37,10 @@ class SongPlayerHelper: NSObject, AVAudioPlayerDelegate
         let playerItem = AVPlayerItem(url: SongPlayerHelper.currentSongURL!)
         let metadataList = playerItem.asset.metadata
         
+        currentSongTitle = currentSong?.title
+        currentSongArtist = "unknown artist"
+        currentSongArtwork = #imageLiteral(resourceName: "white")
+        
         for item in metadataList
         {
             guard let key = item.commonKey, let value = item.value else
@@ -46,29 +50,28 @@ class SongPlayerHelper: NSObject, AVAudioPlayerDelegate
             
             switch key
             {
-            case "title" : currentSongTitle = (value as? String)
-            case "artist" : currentSongArtist = value as? String
-            case "artwork" where value is NSData : currentSongArtwork = UIImage(data: value as! Data)
+            case "title" :
+                if (value as? String) != "" && (value as? String) != nil
+                {
+                    currentSongTitle = (value as? String)
+                }
+            case "artist" :
+                if value as? String != "" && value as? String != nil
+                {
+                    currentSongArtist = value as? String
+                }
+            case "artwork" where value is NSData :
+                if let img = UIImage(data: value as! Data)
+                {
+                    currentSongArtwork = img
+                }
             // case type (for genre)
             default:
                 continue
             }
             
             // Handle empty song titles, artists, etc.
-            if currentSongTitle == "" || currentSongTitle == nil
-            {
-                currentSongTitle = currentSong?.title
-            }
             
-            if currentSongArtist == "" || currentSongArtist == nil
-            {
-                currentSongArtist = "unknown artist"
-            }
-            
-            if currentSongArtwork == nil
-            {
-                currentSongArtwork = #imageLiteral(resourceName: "white")
-            }
         }
     }
     

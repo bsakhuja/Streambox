@@ -422,6 +422,7 @@ extension PlaylistDetailViewController: UITableViewDataSource, UITableViewDelega
         let song = (currentPlaylist?.playlistSongs?.object(at: indexPath.row) as! Song)
         cell.songTitleLabel.text = text
         cell.downloadProgressBar.progress = song.downloadPercent
+        cell.downloadProgressBar.alpha = 0
         if indexPath.row == 0
         {
             indexPathOfFirstSong = indexPath
