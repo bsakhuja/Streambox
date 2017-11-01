@@ -46,7 +46,8 @@ class PlaylistsViewController: UIViewController, AVAudioPlayerDelegate, UIToolba
         
         // get rid of extra separators by adding a view below
         self.tableView.tableFooterView = UIView()
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!]
+        // Swift 4 updated
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.font: UIFont(name: "Lato-Regular", size: 20)!]
         
         
         // Set up toolbar
@@ -171,7 +172,7 @@ class PlaylistsViewController: UIViewController, AVAudioPlayerDelegate, UIToolba
     }
     
     // Utility function for the slider
-    func updateTime(_ timer: Timer)
+    @objc func updateTime(_ timer: Timer)
     {
         // Update the time labels
         let (minElapsed, secElapsed) = secondsToMinutesSeconds(seconds: Int(SongPlayerHelper.audioPlayer.currentTime))

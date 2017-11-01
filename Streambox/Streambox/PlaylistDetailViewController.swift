@@ -61,8 +61,10 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
         self.navigationItem.title = (currentPlaylist?.name) ?? "New Playlist"
         self.playlistNameTextField.text = (currentPlaylist?.name) ?? ""
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!]
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.classForCoder() as! UIAppearanceContainer.Type]).setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Lato-Light", size: 18)!], for: .normal)
+        // Swift 4 updated
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.font: UIFont(name: "Lato-Regular", size: 20)!]
+        // Swift 4 updated
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.classForCoder() as! UIAppearanceContainer.Type]).setTitleTextAttributes([ NSAttributedStringKey.font: UIFont(name: "Lato-Light", size: 18)!], for: .normal)
         
         // Set up toolbar
         // TODO: - move bar off screen then move back on when playing
@@ -350,7 +352,7 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
     }
     
     // Utility function for the slider
-    func updateTime(_ timer: Timer)
+    @objc func updateTime(_ timer: Timer)
     {
         // Update the time labels
         let (minElapsed, secElapsed) = secondsToMinutesSeconds(seconds: Int(SongPlayerHelper.audioPlayer.currentTime))

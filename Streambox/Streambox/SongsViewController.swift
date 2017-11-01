@@ -71,8 +71,9 @@ class SongsViewController: UIViewController, NVActivityIndicatorViewable, AVAudi
         self.tableView.reloadData()
         
         // Update colors and fonts
+        // Swift 4 updated
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.font: UIFont(name: "Lato-Regular", size: 20)!]
         
         
         // Used for loading songs in from the add folders view controller
@@ -569,7 +570,7 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     // Utility function for the slider
-    func updateTime(_ timer: Timer)
+    @objc func updateTime(_ timer: Timer)
     {
         // Update the time labels
         let (minElapsed, secElapsed) = secondsToMinutesSeconds(seconds: Int(SongPlayerHelper.audioPlayer.currentTime))

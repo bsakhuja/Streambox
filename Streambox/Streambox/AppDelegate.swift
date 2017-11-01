@@ -30,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         // Update tab bar font
-        UITabBarItem.appearance().setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Lato-Light", size: 13)!], for: .normal)
+        // Swift 4 updated
+        UITabBarItem.appearance().setTitleTextAttributes([ NSAttributedStringKey.font: UIFont(name: "Lato-Light", size: 13)!], for: .normal)
         
         // If the user is logged in, present the main storyboard
         if users.count > 0
