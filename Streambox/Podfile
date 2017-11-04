@@ -5,5 +5,6 @@ target 'Streambox' do
   pod 'SwiftyDropbox'
   pod 'NVActivityIndicatorView'
   pod 'Fabric'
-  pod 'Crashlytics'  
+  pod 'Crashlytics'
+  pod 'Pulley'
 end

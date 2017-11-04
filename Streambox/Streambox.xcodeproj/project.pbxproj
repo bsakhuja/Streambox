@@ -16,7 +16,6 @@
 		0605CEE61F10315A00FA77AC /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0605CEE51F10315A00FA77AC /* Playlists.storyboard */; };
 		0605CEE81F10316E00FA77AC /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEE71F10316E00FA77AC /* PlaylistsViewController.swift */; };
 		0605CEEA1F10317500FA77AC /* SongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEE91F10317500FA77AC /* SongsViewController.swift */; };
-		0605CEEC1F10319E00FA77AC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEEB1F10319E00FA77AC /* MainTabBarViewController.swift */; };
 		0605CEEE1F10332400FA77AC /* PlaylistDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEED1F10332400FA77AC /* PlaylistDetailViewController.swift */; };
 		060960EF1F314AB300A57606 /* SongControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060960EE1F314AB200A57606 /* SongControlsView.swift */; };
 		060D194D1F2F967A00F8F825 /* SongDownloadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D194C1F2F967A00F8F825 /* SongDownloadProgressView.swift */; };
@@ -82,7 +81,6 @@
 		0605CEE51F10315A00FA77AC /* Playlists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
 		0605CEE71F10316E00FA77AC /* PlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
 		0605CEE91F10317500FA77AC /* SongsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsViewController.swift; sourceTree = "<group>"; };
-		0605CEEB1F10319E00FA77AC /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		0605CEED1F10332400FA77AC /* PlaylistDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistDetailViewController.swift; sourceTree = "<group>"; };
 		060960EE1F314AB200A57606 /* SongControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongControlsView.swift; sourceTree = "<group>"; };
 		060D194C1F2F967A00F8F825 /* SongDownloadProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDownloadProgressView.swift; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 		063FE64D1F0EF8E800311EA7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0605CEEB1F10319E00FA77AC /* MainTabBarViewController.swift */,
 				0605CEE91F10317500FA77AC /* SongsViewController.swift */,
 				0605CEE71F10316E00FA77AC /* PlaylistsViewController.swift */,
 				0605CEED1F10332400FA77AC /* PlaylistDetailViewController.swift */,
@@ -499,7 +496,6 @@
 				0605CEDC1F10228D00FA77AC /* DropboxHelper.swift in Sources */,
 				060960EF1F314AB300A57606 /* SongControlsView.swift in Sources */,
 				069CDAFE1F142A0500F4CBE8 /* Item.swift in Sources */,
-				0605CEEC1F10319E00FA77AC /* MainTabBarViewController.swift in Sources */,
 				0605CEDF1F102AB700FA77AC /* FoldersTableViewCell.swift in Sources */,
 				06F24BEE1F0F03D5009FA14D /* SelectFoldersViewController.swift in Sources */,
 				060524A21F22B6DE004E7551 /* Entry.swift in Sources */,
@@ -655,7 +651,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.briansakhuja.Streambox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -679,7 +675,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.briansakhuja.Streambox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};

@@ -47,20 +47,6 @@ class SongsViewController: UIViewController, NVActivityIndicatorViewable, AVAudi
     @IBOutlet weak var searchbar: SearchSongsBar!
     let searchController = UISearchController(searchResultsController: nil)
     
-    // MARK: - Toolbar Information
-    @IBOutlet weak var toolbar: SongControllerToolbar!
-    @IBOutlet weak var rewindButton: UIButton!
-    @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var fastForwardButton: UIButton!
-    @IBOutlet weak var timeElapsedLabel: UILabel!
-    @IBOutlet weak var timeRemainingLabel: UILabel!
-    
-    // MARK: - Current Song Label
-    @IBOutlet weak var currentSongLabel: UILabel!
-    
-    // MARK: - Song slider
-    @IBOutlet weak var songSlider: UISlider!
-    
     // MARK: - Download progress view
     
     // MARK: - VC Lifecycle
@@ -96,20 +82,6 @@ class SongsViewController: UIViewController, NVActivityIndicatorViewable, AVAudi
         tableView.dataSource = self
         searchbar.delegate = self
         
-        // Set up toolbar
-        // TODO: - move bar off screen then move back on when playing
-        self.currentSongLabel.alpha = 0
-        self.timeRemainingLabel.alpha = 0
-        self.rewindButton.alpha = 0
-        self.fastForwardButton.alpha = 0
-        self.timeElapsedLabel.alpha = 0
-        
-        // Set up song slider
-        let knobSlider = UIImage(named: "needle")
-        self.songSlider.alpha = 0
-        self.songSlider.value = 0.0
-        self.songSlider.setThumbImage(knobSlider, for: .normal)
-        
         
     }
     
@@ -125,14 +97,6 @@ class SongsViewController: UIViewController, NVActivityIndicatorViewable, AVAudi
         {
             // Updates the slider position regularly at the specified interval
             Timer.scheduledTimer(timeInterval: 0.5, target: self,  selector: #selector(self.updateTime), userInfo: nil, repeats: true)
-            // present the song controls
-            self.rewindButton.alpha = 1
-            self.fastForwardButton.alpha = 1
-            self.timeElapsedLabel.alpha = 1.0
-            self.timeRemainingLabel.alpha = 1.0
-            self.songSlider.alpha = 1.0
-            self.currentSongLabel.alpha = 1.0
-            // self.currentSongLabel.text = SongPlayerHelper.audioPlayer.
             
         }
         tableView.reloadData()
@@ -160,72 +124,6 @@ class SongsViewController: UIViewController, NVActivityIndicatorViewable, AVAudi
         tableView.reloadData()
     }
     
-    
-    // MARK: - Music Controller Toolbar Actions
-    
-    @IBAction func playPauseButtonTapped(_ sender: UIButton)
-    {
-        Answers.logCustomEvent(withName: "Play/Pause Button Tapped", customAttributes: nil)
-        
-        if SongPlayerHelper.currentSong == nil
-        {
-            if !SongPlayerHelper.isSongDownloading && songs.count > 0
-            {
-                prepareForPlaySongInitial(songQueue: SongPlayerHelper.songQueue)
-            }
-        }
-        else if SongPlayerHelper.audioPlayer.isPlaying
-        {
-            let playButton = UIImage(named: "play")
-            self.playPauseButton.setImage(playButton, for: .normal)
-            SongPlayerHelper.audioPlayer.pause()
-        }
-        else
-        {
-            let pauseButton = UIImage(named: "pause")
-            self.playPauseButton.setImage(pauseButton, for: .normal)
-            SongPlayerHelper.audioPlayer.prepareToPlay()
-            SongPlayerHelper.audioPlayer.play()
-        }
-    }
-    
-    
-    
-    @IBAction func slide(_ sender: UISlider)
-    {
-        SongPlayerHelper.audioPlayer.currentTime = TimeInterval(songSlider.value)
-    }
-    
-    @IBAction func rewindButtonTapped(_ sender: UIButton)
-    {
-        Answers.logCustomEvent(withName: "Rewind Button Tapped", customAttributes: nil)
-        if SongPlayerHelper.audioPlayer.currentTime > 5
-        {
-            SongPlayerHelper.audioPlayer.currentTime = 0
-        }
-        else
-        {
-            if let rowOfPreviousSong = previousIndexPath?.row
-            {
-                if rowOfPreviousSong > 0
-                {
-                    tableView(tableView, didSelectRowAt: previousIndexPath!)
-                }
-            }
-        }
-    }
-    
-    @IBAction func fastForwardButtonTapped(_ sender: UIButton)
-    {
-        Answers.logCustomEvent(withName: "Fast Forward Button Tapped", customAttributes: nil)
-        if let rowOfNextSong = nextIndexPath?.row
-        {
-            if rowOfNextSong < filteredSongs.count
-            {
-                tableView(tableView, didSelectRowAt: nextIndexPath!)
-            }
-        }
-    }
 }
 
 
@@ -394,7 +292,7 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
     // Cancel the download of the song at the given filepath
     func cancelDownload(forSongAt filePath: String)
     {
-        DropboxHelper.cancelDownloadingFile(directory: filePath, onCompletion: { (done) in
+        DropboxHelper.cancelDownloadingFile(directory: filePath, onCompletion: { () in
             
         })
     }
@@ -433,19 +331,6 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
             // Update the id3 tags
             SongPlayerHelper.getID3Tags()
 
-
-            
-            // present the song controls and hide the progress bar
-            UIView.animate(withDuration: 0.05) {
-                self.rewindButton.alpha = 1
-                self.fastForwardButton.alpha = 1
-                self.timeElapsedLabel.alpha = 1.0
-                self.timeRemainingLabel.alpha = 1.0
-                self.songSlider.alpha = 1.0
-                self.currentSongLabel.alpha = 1.0
-                self.currentSongLabel.text = selectedSong.title
-                downloadProgress?.alpha = 0.0
-            }
             
             self.tableView.reloadData()
             
@@ -457,7 +342,7 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
             
             selectedSong.title = SongPlayerHelper.currentSongTitle
             selectedSong.artist = SongPlayerHelper.currentSongArtist
-            selectedSong.artwork = UIImagePNGRepresentation(SongPlayerHelper.currentSongArtwork!)! as NSData
+            selectedSong.artwork = UIImagePNGRepresentation(SongPlayerHelper.currentSongArtwork!)!
             
             // show in now playing info center
             SongPlayerHelper.updateNowPlayingInfoCenter()
@@ -480,10 +365,6 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         
         SongPlayerHelper.currentSongTitle = selectedSong.title
         
-        // Present the progress bar and set the progress to 0
-        downloadProgress?.alpha = 1.0
-        downloadProgress?.progress = 0
-        
         let path = "id:" + selectedSong.id!
         
         // Set the is downloading states to true
@@ -495,18 +376,6 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
             SongPlayerHelper.currentSongURL = downloadedSongURL
             SongPlayerHelper.currentSong = selectedSong
 
-            
-            // present the song controls and hide the progress bar
-            UIView.animate(withDuration: 0.05) {
-                self.rewindButton.alpha = 1
-                self.fastForwardButton.alpha = 1
-                self.timeElapsedLabel.alpha = 1.0
-                self.timeRemainingLabel.alpha = 1.0
-                self.songSlider.alpha = 1.0
-                self.currentSongLabel.alpha = 1.0
-                self.currentSongLabel.text = selectedSong.title
-                downloadProgress?.alpha = 0.0
-            }
             
             // Set the is downloading states to false
             SongPlayerHelper.isSongDownloading = false
@@ -525,20 +394,15 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         
         do {
             // sets the default image to pause since the player presents itself when a song is playing
-            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             SongPlayerHelper.audioPlayer = try AVAudioPlayer(contentsOf: songURL)
             SongPlayerHelper.audioPlayer.delegate = self
             SongPlayerHelper.audioPlayer.prepareToPlay()
             
-            // initialize slider for song
-            self.songSlider.value = 0.0
-            self.songSlider.maximumValue = Float(SongPlayerHelper.audioPlayer.duration)
-            //            self.timeRemainingLabel.text = String(self.audioPlayer.duration)
             
             
             
-            // Updates the slider position regularly at the specified interval
-            Timer.scheduledTimer(timeInterval: 0.05, target: self,  selector: #selector(self.updateTime), userInfo: nil, repeats: true)
+//            // Updates the slider position regularly at the specified interval
+//            Timer.scheduledTimer(timeInterval: 0.05, target: self,  selector: #selector(self.updateTime), userInfo: nil, repeats: true)
             
             // Play song
             SongPlayerHelper.isSongLoaded = true
@@ -575,45 +439,6 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         // Update the time labels
         let (minElapsed, secElapsed) = secondsToMinutesSeconds(seconds: Int(SongPlayerHelper.audioPlayer.currentTime))
         let (minRemaining, secRemaining) = secondsToMinutesSeconds(seconds: (Int(SongPlayerHelper.audioPlayer.duration-SongPlayerHelper.audioPlayer.currentTime)))
-        
-        if secElapsed < 10
-        {
-            SongPlayerHelper.currentSongTimeElapsed = "\(minElapsed):0\(secElapsed)"
-            self.timeElapsedLabel.text = SongPlayerHelper.currentSongTimeElapsed
-        }
-        else
-        {
-            SongPlayerHelper.currentSongTimeElapsed = "\(minElapsed):\(secElapsed)"
-            self.timeElapsedLabel.text = SongPlayerHelper.currentSongTimeElapsed
-            
-        }
-        
-        if secRemaining < 10
-        {
-            SongPlayerHelper.currentSongTimeRemaining = "-\(minRemaining):0\(secRemaining)"
-            self.timeRemainingLabel.text = SongPlayerHelper.currentSongTimeRemaining
-        }
-        else
-        {
-            SongPlayerHelper.currentSongTimeRemaining = "-\(minRemaining):\(secRemaining)"
-            self.timeRemainingLabel.text = SongPlayerHelper.currentSongTimeRemaining
-        }
-        
-        // update the slider
-        songSlider.maximumValue = Float(SongPlayerHelper.audioPlayer.duration)
-        songSlider.value = Float(SongPlayerHelper.audioPlayer.currentTime)
-        currentSongLabel.text = SongPlayerHelper.currentSongTitle
-        
-        
-        // If a song is not playing, show the play button
-        if !SongPlayerHelper.audioPlayer.isPlaying
-        {
-            playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-        }
-        else
-        {
-            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        }
     }
     
     
@@ -626,27 +451,4 @@ extension SongsViewController: UITableViewDataSource, UITableViewDelegate {
         
         tableView.reloadData()
     }
-    
-    
-    // Set up the info center
-    //    private func setupNowPlayingInfoCenter() {
-    //        UIApplication.shared.beginReceivingRemoteControlEvents();
-    //        MPRemoteCommandCenter.shared().playCommand.addTarget {event in
-    //            self.audioPlayer.play()
-    //            self.setupNowPlayingInfoCenter()
-    //            return .success
-    //        }
-    //        MPRemoteCommandCenter.shared().pauseCommand.addTarget {event in
-    //            self.audioPlayer.pause()
-    //            return .success
-    //        }
-    //        MPRemoteCommandCenter.shared.nextTrackCommand.addTarget {event in
-    //            self.next()
-    //            return .Success
-    //        }
-    //        MPRemoteCommandCenter.shared.previousTrackCommand.addTarget {event in
-    //            self.prev()
-    //            return .Success
-    //        }
-    //    }
 }

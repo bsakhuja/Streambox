@@ -50,17 +50,17 @@ class SongPlayerHelper: NSObject, AVAudioPlayerDelegate
             
             switch key
             {
-            case "title" :
+            case .commonKeyTitle :
                 if (value as? String) != "" && (value as? String) != nil
                 {
                     currentSongTitle = (value as? String)
                 }
-            case "artist" :
+            case .commonKeyArtist :
                 if value as? String != "" && value as? String != nil
                 {
                     currentSongArtist = value as? String
                 }
-            case "artwork" where value is NSData :
+            case .commonKeyArtwork where value is NSData :
                 if let img = UIImage(data: value as! Data)
                 {
                     currentSongArtwork = img

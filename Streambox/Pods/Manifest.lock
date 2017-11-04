@@ -6,6 +6,7 @@ PODS:
   - NVActivityIndicatorView (4.0.0):
     - NVActivityIndicatorView/Presenter (= 4.0.0)
   - NVActivityIndicatorView/Presenter (4.0.0)
+  - Pulley (2.1.0)
   - SwiftyDropbox (4.2.2):
     - Alamofire (~> 4.4.0)
 
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - NVActivityIndicatorView
+  - Pulley
   - SwiftyDropbox
 
 SPEC CHECKSUMS:
@@ -20,8 +22,9 @@ SPEC CHECKSUMS:
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   NVActivityIndicatorView: 54c9b93b6f25a4f467512680c0c90c09a1095cf2
+  Pulley: 7abf04a13c0d4681b3c21a4b4bb0bc83612899ae
   SwiftyDropbox: 7b9cf3cc29e3d1b67dc8b7f1aa65c049bb122a34
 
-PODFILE CHECKSUM: fda48cfae89fc92be36bfbc90d4c031c2b30065e
+PODFILE CHECKSUM: 3fe6071d85da27a92b10335578640634cf32cc06
 
 COCOAPODS: 1.2.1
