@@ -10,9 +10,9 @@
 		060524A21F22B6DE004E7551 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060524A11F22B6DE004E7551 /* Entry.swift */; };
 		0605CED81F100D9C00FA77AC /* Storyboard+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CED71F100D9C00FA77AC /* Storyboard+Utility.swift */; };
 		0605CEDC1F10228D00FA77AC /* DropboxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEDB1F10228D00FA77AC /* DropboxHelper.swift */; };
-		0605CEDF1F102AB700FA77AC /* FoldersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEDE1F102AB700FA77AC /* FoldersTableViewCell.swift */; };
+		0605CEDF1F102AB700FA77AC /* DropboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEDE1F102AB700FA77AC /* DropboxTableViewCell.swift */; };
 		0605CEE21F10309200FA77AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0605CEE11F10309200FA77AC /* Main.storyboard */; };
-		0605CEE41F10313800FA77AC /* Songs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0605CEE31F10313800FA77AC /* Songs.storyboard */; };
+		0605CEE41F10313800FA77AC /* DropboxViewer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0605CEE31F10313800FA77AC /* DropboxViewer.storyboard */; };
 		0605CEE61F10315A00FA77AC /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0605CEE51F10315A00FA77AC /* Playlists.storyboard */; };
 		0605CEE81F10316E00FA77AC /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEE71F10316E00FA77AC /* PlaylistsViewController.swift */; };
 		0605CEEA1F10317500FA77AC /* SongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEE91F10317500FA77AC /* SongsViewController.swift */; };
@@ -51,8 +51,7 @@
 		06F24BE31F0EFB2C009FA14D /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06F24BE21F0EFB2C009FA14D /* Login.storyboard */; };
 		06F24BE51F0F01F8009FA14D /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F24BE41F0F01F8009FA14D /* Song.swift */; };
 		06F24BE81F0F0209009FA14D /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F24BE71F0F0209009FA14D /* Playlist.swift */; };
-		06F24BEC1F0F03B9009FA14D /* SelectFolders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06F24BEB1F0F03B9009FA14D /* SelectFolders.storyboard */; };
-		06F24BEE1F0F03D5009FA14D /* SelectFoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F24BED1F0F03D5009FA14D /* SelectFoldersViewController.swift */; };
+		06F24BEE1F0F03D5009FA14D /* DropboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F24BED1F0F03D5009FA14D /* DropboxViewController.swift */; };
 		06F71E0C1F2A4F1E000A83E5 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F71E0B1F2A4F1E000A83E5 /* CoreDataHelper.swift */; };
 		9EF82754EE61A28456FE5712 /* Pods_Streambox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C7BEDF38123DDA8E408ED0 /* Pods_Streambox.framework */; };
 /* End PBXBuildFile section */
@@ -75,9 +74,9 @@
 		0605CED71F100D9C00FA77AC /* Storyboard+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
 		0605CEDA1F101E7200FA77AC /* Streambox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Streambox.entitlements; sourceTree = "<group>"; };
 		0605CEDB1F10228D00FA77AC /* DropboxHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxHelper.swift; sourceTree = "<group>"; };
-		0605CEDE1F102AB700FA77AC /* FoldersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersTableViewCell.swift; sourceTree = "<group>"; };
+		0605CEDE1F102AB700FA77AC /* DropboxTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxTableViewCell.swift; sourceTree = "<group>"; };
 		0605CEE11F10309200FA77AC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		0605CEE31F10313800FA77AC /* Songs.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Songs.storyboard; sourceTree = "<group>"; };
+		0605CEE31F10313800FA77AC /* DropboxViewer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DropboxViewer.storyboard; sourceTree = "<group>"; };
 		0605CEE51F10315A00FA77AC /* Playlists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
 		0605CEE71F10316E00FA77AC /* PlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
 		0605CEE91F10317500FA77AC /* SongsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsViewController.swift; sourceTree = "<group>"; };
@@ -117,8 +116,7 @@
 		06F24BE21F0EFB2C009FA14D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		06F24BE41F0F01F8009FA14D /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		06F24BE71F0F0209009FA14D /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
-		06F24BEB1F0F03B9009FA14D /* SelectFolders.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SelectFolders.storyboard; sourceTree = "<group>"; };
-		06F24BED1F0F03D5009FA14D /* SelectFoldersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFoldersViewController.swift; sourceTree = "<group>"; };
+		06F24BED1F0F03D5009FA14D /* DropboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxViewController.swift; sourceTree = "<group>"; };
 		06F71E0B1F2A4F1E000A83E5 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		25B43EEBE75939C635CFCB7B /* Pods_Streambox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Streambox.framework; path = "../../../../../../../../../Users/briansakhuja/Library/Developer/Xcode/DerivedData/Streambox-elcanujvqazkauhibikrnjvhizyz/Build/Products/Debug-iphoneos/Pods_Streambox.framework"; sourceTree = SDKROOT; };
 		40C7BEDF38123DDA8E408ED0 /* Pods_Streambox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Streambox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,11 +159,11 @@
 		0605CEE01F102ABB00FA77AC /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
+				0605CEDE1F102AB700FA77AC /* DropboxTableViewCell.swift */,
 				069CDAF11F13EC5B00F4CBE8 /* SongsTableViewCell.swift */,
 				069CDAF31F13EC6700F4CBE8 /* PlaylistsTableViewCell.swift */,
 				063F6ADE1F2BA0C10001FB07 /* PlaylistSongsTableViewCell.swift */,
 				069CDAF71F13F2CF00F4CBE8 /* AddSongsToPlaylistTableViewCell.swift */,
-				0605CEDE1F102AB700FA77AC /* FoldersTableViewCell.swift */,
 			);
 			name = "Table View Cells";
 			sourceTree = "<group>";
@@ -222,10 +220,9 @@
 			isa = PBXGroup;
 			children = (
 				0605CEE11F10309200FA77AC /* Main.storyboard */,
-				0605CEE31F10313800FA77AC /* Songs.storyboard */,
+				0605CEE31F10313800FA77AC /* DropboxViewer.storyboard */,
 				0605CEE51F10315A00FA77AC /* Playlists.storyboard */,
 				06F24BE21F0EFB2C009FA14D /* Login.storyboard */,
-				06F24BEB1F0F03B9009FA14D /* SelectFolders.storyboard */,
 				063FE6431F0EF8B700311EA7 /* LaunchScreen.storyboard */,
 			);
 			name = Storyboards;
@@ -234,11 +231,11 @@
 		063FE64D1F0EF8E800311EA7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				06F24BED1F0F03D5009FA14D /* DropboxViewController.swift */,
 				0605CEE91F10317500FA77AC /* SongsViewController.swift */,
 				0605CEE71F10316E00FA77AC /* PlaylistsViewController.swift */,
 				0605CEED1F10332400FA77AC /* PlaylistDetailViewController.swift */,
 				069CDAF91F13F2E400F4CBE8 /* AddSongsToPlaylistViewController.swift */,
-				06F24BED1F0F03D5009FA14D /* SelectFoldersViewController.swift */,
 				063FE6391F0EF8B700311EA7 /* LoginViewController.swift */,
 				061DF8E41F38CFA500C05EDE /* SettingsViewController.swift */,
 			);
@@ -293,9 +290,9 @@
 		06F24BE61F0F01FC009FA14D /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				06F24BE41F0F01F8009FA14D /* Song.swift */,
-				06F24BE71F0F0209009FA14D /* Playlist.swift */,
 				069CDAFD1F142A0500F4CBE8 /* Item.swift */,
+				06F24BE71F0F0209009FA14D /* Playlist.swift */,
+				06F24BE41F0F01F8009FA14D /* Song.swift */,
 				060524A11F22B6DE004E7551 /* Entry.swift */,
 			);
 			name = "Data Models";
@@ -409,8 +406,7 @@
 				06961A041F33E1E00088A059 /* Lato-Light.ttf in Resources */,
 				06961A061F33E1E30088A059 /* Lato-LightItalic.ttf in Resources */,
 				06961A081F33E1E80088A059 /* Lato-Regular.ttf in Resources */,
-				0605CEE41F10313800FA77AC /* Songs.storyboard in Resources */,
-				06F24BEC1F0F03B9009FA14D /* SelectFolders.storyboard in Resources */,
+				0605CEE41F10313800FA77AC /* DropboxViewer.storyboard in Resources */,
 				063FE6421F0EF8B700311EA7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,8 +492,8 @@
 				0605CEDC1F10228D00FA77AC /* DropboxHelper.swift in Sources */,
 				060960EF1F314AB300A57606 /* SongControlsView.swift in Sources */,
 				069CDAFE1F142A0500F4CBE8 /* Item.swift in Sources */,
-				0605CEDF1F102AB700FA77AC /* FoldersTableViewCell.swift in Sources */,
-				06F24BEE1F0F03D5009FA14D /* SelectFoldersViewController.swift in Sources */,
+				0605CEDF1F102AB700FA77AC /* DropboxTableViewCell.swift in Sources */,
+				06F24BEE1F0F03D5009FA14D /* DropboxViewController.swift in Sources */,
 				060524A21F22B6DE004E7551 /* Entry.swift in Sources */,
 				060D194D1F2F967A00F8F825 /* SongDownloadProgressView.swift in Sources */,
 				061DF8E51F38CFA500C05EDE /* SettingsViewController.swift in Sources */,

@@ -8,23 +8,14 @@
 
 import UIKit
 
-// Protocol for selecting an entry
-protocol SelectEntryProtocol: class
-{
-    func whenEntryIsSelected(cell: FoldersTableViewCell)
-}
-
-class FoldersTableViewCell: UITableViewCell
+class DropboxTableViewCell: UITableViewCell
 {
     // MARK: - Properties
     @IBOutlet weak var itemNameLabel: UILabel!
-    @IBOutlet var checkbox: UIButton!
 
-    var entryOfThisCell: Entry?
+    var itemOfThisCell: Item?
     var rowOfThisCell = 0
     var isCellSelected = false
-    
-    weak var delegate: SelectEntryProtocol?
     
     // MARK: - Table View Cell Lifecycle
     override func awakeFromNib()
@@ -37,11 +28,7 @@ class FoldersTableViewCell: UITableViewCell
     {
         super.prepareForReuse()
     }
-    
-    @IBAction func checkboxTapped(_ sender: UIButton)
-    {
-        delegate?.whenEntryIsSelected(cell: self)
-    }
+
 
 }
 

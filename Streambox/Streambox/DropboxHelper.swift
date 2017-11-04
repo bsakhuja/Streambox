@@ -16,14 +16,14 @@ struct DropboxHelper
     static var downloadProgress = 0.0
     
     // On completion, returns the entries in the given directory as Entry objects
-    static func getItemsAsMetadata(directory directoryPath: String, onCompletion: @escaping ([Entry]?) -> Void) {
+    static func getItemsAsMetadata(directory directoryPath: String, onCompletion: @escaping ([Item]?) -> Void) {
         // Verify user is logged into Dropbox
         if let client = DropboxClientsManager.authorizedClient {
             client.files.listFolder(path: directoryPath).response { response, error in
                 if let result = response {
                     
-                    let entriesInitialized = result.entries.map { Entry(entryMetadata: $0, id: ($0 as? Files.FileMetadata)?.id ?? "", isSelected: false) }
-                    onCompletion(entriesInitialized)
+                    let itemsInitialized = result.entries.map { Item(itemMetadata: $0, rootDirectory: directoryPath, id: ($0 as? Files.FileMetadata)?.id ?? "") }
+                    onCompletion(itemsInitialized)
                     
                 } else {
                     onCompletion(nil)
@@ -44,7 +44,7 @@ struct DropboxHelper
                 if let result = response {
                     for entry in result.entries {
                         let id = (entry as? Files.FileMetadata)?.id.components(separatedBy: ":")[1]
-                        let newItem = Item(name: entry.name, rootDirectory: directoryPath, id: id ?? "")
+                        let newItem = Item(itemMetadata: (entry as? Files.FileMetadata)!, rootDirectory: directoryPath, id: id ?? "")
                         
                         
                         filesInDirectory.append(newItem)

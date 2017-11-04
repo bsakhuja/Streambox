@@ -10,7 +10,8 @@ import UIKit
 import SwiftyDropbox
 
 class Item: NSObject {
-    var name: String
+    let itemMetadata: Files.Metadata
+    var name: String?
     var nameAsNSString: NSString
     var fileNameWithoutExtension: String
     var fileNameExtension: String
@@ -26,15 +27,15 @@ class Item: NSObject {
     
     
     // initializer
-    init(name: String, rootDirectory: String, id: String)
+    init(itemMetadata: Files.Metadata, rootDirectory: String, id: String)
     {
-        
-        self.name = name
-        self.nameAsNSString = name as NSString
+        self.itemMetadata = itemMetadata
+        self.name = itemMetadata.name
+        self.nameAsNSString = name! as NSString
         self.fileNameWithoutExtension = nameAsNSString.deletingPathExtension
         self.fileNameExtension = nameAsNSString.pathExtension
         self.rootDirectory = rootDirectory
-        self.filePath = rootDirectory + "/" + name
+        self.filePath = rootDirectory + "/" + name!
         self.id = id
         
         
@@ -51,54 +52,5 @@ class Item: NSObject {
         {
             isMusicFile = true
         }
-        
-        super.init()
-        
-        self.initializeChildren(directory: filePath, startIndex: self.startIndex, endIndex: self.endIndex)
-        
-        
     }
-    
-    
-    // need to reload tableview somewhere in here for selectfoldersviewcontroller
-    func initializeChildren(directory: String, startIndex: Int, endIndex: Int)
-    {
-        DropboxHelper.counter += 1
-        
-        DropboxHelper.getItems(directory: filePath, onCompletion: { (retrievedItems) in
-            if let retrievedItems = retrievedItems
-            {
-                self.children = retrievedItems
-                
-                for item in self.children!
-                {
-                    print(item.name)
-                    self.startIndex += 1
-                    
-                    if item.children != nil
-                    {
-                        self.initializeChildren(directory: item.filePath, startIndex: self.startIndex, endIndex: self.endIndex)
-                    } else {
-                        // for children assign their own index
-                        self.endIndex += 1
-                        // recursively define end index to parents
-                        
-                    }
-                }
-                
-            }
-            DropboxHelper.counter -= 1
-            if DropboxHelper.counter == 0{
-                print("DONE GETTING ALL FILES")
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DoneInitializing"), object: nil)
-            }
-        })
-        
-        
-    }
-    
-    
-    
-    
-    
 }

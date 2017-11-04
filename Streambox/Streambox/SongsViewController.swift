@@ -6,7 +6,6 @@
 //  Copyright © 2017 Brian Sakhuja. All rights reserved.
 //
 
-// TODO: - Stop download and resume new song
 
 import UIKit
 import Foundation

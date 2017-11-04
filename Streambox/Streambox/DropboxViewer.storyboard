@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -15,10 +14,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Songs-->
+        <!--Dropbox-->
         <scene sceneID="XKN-zE-HtM">
             <objects>
-                <viewController id="XZw-hZ-WeC" customClass="SongsViewController" customModule="Streambox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XZw-hZ-WeC" customClass="DropboxViewController" customModule="Streambox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IKT-FX-6bG"/>
                         <viewControllerLayoutGuide type="bottom" id="Bbd-wX-Gfg"/>
@@ -27,103 +26,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search songs" translatesAutoresizingMaskIntoConstraints="NO" id="dMs-dt-aHy" customClass="SearchSongsBar" customModule="Streambox" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1Iu-dx-bOD">
-                                <rect key="frame" x="0.0" y="56" width="375" height="498"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CFe-Yr-OcK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="QO5-Kr-1s3"/>
-                                </constraints>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="songSongCell" rowHeight="65" id="NNf-Yw-5Zg" customClass="SongsTableViewCell" customModule="Streambox" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="65"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="DropboxTableViewCell" id="PW3-uF-j1e" customClass="DropboxTableViewCell" customModule="Streambox" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NNf-Yw-5Zg" id="yMC-8R-kha">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PW3-uF-j1e" id="h5l-6Q-Uu1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <progressView autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gZc-Wc-hZI" customClass="SongDownloadProgressView" customModule="Streambox" customModuleProvider="target">
-                                                    <rect key="frame" x="5" y="1" width="365" height="63"/>
-                                                    <color key="progressTintColor" red="0.81228581095463293" green="0.92538071888225393" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="trackTintColor" red="0.14557123180000001" green="0.49301892520000001" blue="0.8667101264" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </progressView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song title" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnk-hK-PV0">
-                                                    <rect key="frame" x="60" y="7" width="305" height="19"/>
-                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deB-FO-oWj">
+                                                    <rect key="frame" x="10" y="0.0" width="355" height="43.5"/>
+                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download song to update information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5K-b0-7jq">
-                                                    <rect key="frame" x="60" y="40.5" width="305" height="17"/>
-                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white" translatesAutoresizingMaskIntoConstraints="NO" id="s6u-i6-ju1">
-                                                    <rect key="frame" x="10" y="12.5" width="40" height="40"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="Sbm-NX-OgG"/>
-                                                        <constraint firstAttribute="height" constant="40" id="bBZ-Nr-TYz"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Pnk-hK-PV0" firstAttribute="top" secondItem="yMC-8R-kha" secondAttribute="top" constant="7" id="7aL-UO-klG"/>
-                                                <constraint firstAttribute="trailing" secondItem="Pnk-hK-PV0" secondAttribute="trailing" constant="10" id="Aat-gy-OlJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="X5K-b0-7jq" secondAttribute="bottom" constant="7" id="F05-zy-ga3"/>
-                                                <constraint firstItem="Pnk-hK-PV0" firstAttribute="leading" secondItem="s6u-i6-ju1" secondAttribute="trailing" constant="10" id="Gkc-6e-9xm"/>
-                                                <constraint firstAttribute="trailing" secondItem="X5K-b0-7jq" secondAttribute="trailing" constant="10" id="OmV-rJ-Nsq"/>
-                                                <constraint firstItem="gZc-Wc-hZI" firstAttribute="leading" secondItem="yMC-8R-kha" secondAttribute="leadingMargin" constant="-10" id="Pxk-zD-ZcR"/>
-                                                <constraint firstItem="gZc-Wc-hZI" firstAttribute="top" secondItem="yMC-8R-kha" secondAttribute="topMargin" constant="-10" id="ZhN-oe-15c"/>
-                                                <constraint firstItem="X5K-b0-7jq" firstAttribute="leading" secondItem="s6u-i6-ju1" secondAttribute="trailing" constant="10" id="gvW-Xb-iN9"/>
-                                                <constraint firstItem="s6u-i6-ju1" firstAttribute="centerY" secondItem="gZc-Wc-hZI" secondAttribute="centerY" id="j7h-fL-hkY"/>
-                                                <constraint firstItem="s6u-i6-ju1" firstAttribute="leading" secondItem="yMC-8R-kha" secondAttribute="leading" constant="10" id="jo8-Wq-nVh"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="gZc-Wc-hZI" secondAttribute="bottom" constant="-10" id="plL-3O-MU9"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="gZc-Wc-hZI" secondAttribute="trailing" constant="-10" id="q96-pv-f9m"/>
+                                                <constraint firstAttribute="bottom" secondItem="deB-FO-oWj" secondAttribute="bottom" id="1Jt-FK-384"/>
+                                                <constraint firstItem="deB-FO-oWj" firstAttribute="leading" secondItem="h5l-6Q-Uu1" secondAttribute="leading" constant="10" id="Mxg-d9-1it"/>
+                                                <constraint firstItem="deB-FO-oWj" firstAttribute="top" secondItem="h5l-6Q-Uu1" secondAttribute="top" id="XXH-xf-xCR"/>
+                                                <constraint firstAttribute="trailing" secondItem="deB-FO-oWj" secondAttribute="trailing" constant="10" id="tWl-Ak-prQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="artworkImageView" destination="s6u-i6-ju1" id="QNK-vJ-DSC"/>
-                                            <outlet property="downloadProgressBar" destination="gZc-Wc-hZI" id="4dI-PL-NCe"/>
-                                            <outlet property="songArtistLabel" destination="X5K-b0-7jq" id="ywv-qn-6AI"/>
-                                            <outlet property="songTitleLabel" destination="Pnk-hK-PV0" id="9vV-If-loI"/>
+                                            <outlet property="itemNameLabel" destination="deB-FO-oWj" id="byO-FL-xeh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="XZw-hZ-WeC" id="IM0-CB-82Q"/>
-                                    <outlet property="delegate" destination="XZw-hZ-WeC" id="DW1-lF-YAw"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="dMs-dt-aHy" secondAttribute="trailing" id="1QE-9e-7xh"/>
-                            <constraint firstItem="dMs-dt-aHy" firstAttribute="leading" secondItem="16S-tm-X8r" secondAttribute="leading" id="UST-k8-SLP"/>
-                            <constraint firstItem="1Iu-dx-bOD" firstAttribute="top" secondItem="dMs-dt-aHy" secondAttribute="bottom" id="XT0-5h-CgI"/>
-                            <constraint firstAttribute="trailing" secondItem="1Iu-dx-bOD" secondAttribute="trailing" id="cdr-0i-qIS"/>
-                            <constraint firstItem="1Iu-dx-bOD" firstAttribute="leading" secondItem="16S-tm-X8r" secondAttribute="leading" id="hDQ-Sm-Chm"/>
-                            <constraint firstItem="Bbd-wX-Gfg" firstAttribute="top" secondItem="1Iu-dx-bOD" secondAttribute="bottom" id="lnN-Qx-tJI"/>
-                            <constraint firstItem="dMs-dt-aHy" firstAttribute="top" secondItem="IKT-FX-6bG" secondAttribute="bottom" id="t5A-Td-XB8"/>
+                            <constraint firstItem="Bbd-wX-Gfg" firstAttribute="top" secondItem="CFe-Yr-OcK" secondAttribute="bottom" id="02n-Hq-X7f"/>
+                            <constraint firstAttribute="trailing" secondItem="CFe-Yr-OcK" secondAttribute="trailing" id="DHB-aT-vn3"/>
+                            <constraint firstItem="CFe-Yr-OcK" firstAttribute="leading" secondItem="16S-tm-X8r" secondAttribute="leading" id="PpS-Uu-ttS"/>
+                            <constraint firstItem="CFe-Yr-OcK" firstAttribute="top" secondItem="IKT-FX-6bG" secondAttribute="bottom" id="qzs-zj-o5V"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Songs" id="oFM-mh-4II">
+                    <navigationItem key="navigationItem" title="Dropbox" id="oFM-mh-4II">
                         <barButtonItem key="leftBarButtonItem" image="settings" id="DKa-8J-t0J">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="vhA-VZ-1mq" kind="show" id="eZQ-yT-rbY"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qy1-WB-GOm">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="bp0-Ld-uMu" kind="show" id="3uB-54-bhI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -131,8 +80,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="searchbar" destination="dMs-dt-aHy" id="ihs-js-kPw"/>
-                        <outlet property="tableView" destination="1Iu-dx-bOD" id="AL6-0G-QSA"/>
+                        <outlet property="tableView" destination="CFe-Yr-OcK" id="iKO-Hi-Hyu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcv-J4-XnX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -157,7 +105,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z9w-bH-x3u" userLabel="Streambox Version">
                                         <rect key="frame" x="0.0" y="20" width="375" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQY-NC-AJf">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQY-NC-AJf">
                                                 <rect key="frame" x="328" y="15" width="37" height="20"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -276,21 +224,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bx1-mI-OWT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2149.5999999999999" y="349.47526236881561"/>
+            <point key="canvasLocation" x="2102" y="788"/>
         </scene>
-        <!--SelectFolders-->
-        <scene sceneID="LIo-7V-cg0">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SelectFolders" id="bp0-Ld-uMu" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RLl-hn-a39" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1798" y="1075"/>
-        </scene>
-        <!--Songs-->
+        <!--Dropbox-->
         <scene sceneID="iuV-nZ-wTe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eYV-t9-HVQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Songs" image="song" id="ycu-x7-NfW"/>
+                    <tabBarItem key="tabBarItem" title="Dropbox" image="song" id="ycu-x7-NfW"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -313,6 +253,5 @@
     <resources>
         <image name="settings" width="20" height="20"/>
         <image name="song" width="20" height="20"/>
-        <image name="white" width="128" height="128"/>
     </resources>
 </document>
