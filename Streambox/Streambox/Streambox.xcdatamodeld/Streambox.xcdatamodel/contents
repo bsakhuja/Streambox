@@ -5,6 +5,8 @@
         <relationship name="playlistSongs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Song" inverseName="belongsToPlaylists" inverseEntity="Song" syncable="YES"/>
     </entity>
     <entity name="Song" representedClassName="Song" syncable="YES" codeGenerationType="class">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artwork" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="downloadPercent" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,7 +20,7 @@
     </entity>
     <elements>
         <element name="Playlist" positionX="207" positionY="-1" width="119" height="75"/>
-        <element name="Song" positionX="-54" positionY="0" width="137" height="135"/>
+        <element name="Song" positionX="-54" positionY="0" width="137" height="165"/>
         <element name="User" positionX="97" positionY="-102" width="128" height="75"/>
     </elements>
 </model>

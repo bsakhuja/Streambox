@@ -21,20 +21,6 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
     @IBOutlet weak var playlistNameTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: - Toolbar Information
-    @IBOutlet weak var toolbar: SongControllerToolbar!
-    @IBOutlet weak var rewindButton: UIButton!
-    @IBOutlet weak var playPauseButton: UIButton!
-    @IBOutlet weak var fastForwardButton: UIButton!
-    @IBOutlet weak var timeElapsedLabel: UILabel!
-    @IBOutlet weak var timeRemainingLabel: UILabel!
-    
-    // MARK: - Current song label
-    @IBOutlet weak var currentSongLabel: UILabel!
-    
-    // MARK: - Song slider
-    @IBOutlet weak var songSlider: UISlider!
-    
     // Utility variables for ensuring that the user can't download a song that they're already playing
     var indexPathOfFirstSong: IndexPath?
     var selectedRow: IndexPath?
@@ -61,22 +47,11 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
         self.navigationItem.title = (currentPlaylist?.name) ?? "New Playlist"
         self.playlistNameTextField.text = (currentPlaylist?.name) ?? ""
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Lato-Regular", size: 20)!]
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.classForCoder() as! UIAppearanceContainer.Type]).setTitleTextAttributes([ NSFontAttributeName: UIFont(name: "Lato-Light", size: 18)!], for: .normal)
+        // Swift 4 updated
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.font: UIFont(name: "Lato-Regular", size: 20)!]
+        // Swift 4 updated
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UINavigationBar.classForCoder() as! UIAppearanceContainer.Type]).setTitleTextAttributes([ NSAttributedStringKey.font: UIFont(name: "Lato-Light", size: 18)!], for: .normal)
         
-        // Set up toolbar
-        // TODO: - move bar off screen then move back on when playing
-        self.currentSongLabel.alpha = 0
-        self.timeRemainingLabel.alpha = 0
-        self.rewindButton.alpha = 0
-        self.fastForwardButton.alpha = 0
-        self.timeElapsedLabel.alpha = 0
-        
-        // Set up song slider
-        let knobSlider = UIImage(named: "needle")
-        self.songSlider.alpha = 0
-        self.songSlider.value = 0.0
-        self.songSlider.setThumbImage(knobSlider, for: .normal)
         
         self.tableView.reloadData()
         
@@ -94,14 +69,6 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
         {
             // Updates the slider position regularly at the specified interval
             Timer.scheduledTimer(timeInterval: 0.5, target: self,  selector: #selector(self.updateTime), userInfo: nil, repeats: true)
-            // present the song controls
-            self.rewindButton.alpha = 1
-            self.fastForwardButton.alpha = 1
-            self.timeElapsedLabel.alpha = 1.0
-            self.timeRemainingLabel.alpha = 1.0
-            self.songSlider.alpha = 1.0
-            self.currentSongLabel.alpha = 1.0
-            // self.currentSongLabel.text = SongPlayerHelper.audioPlayer.
             
         }
         tableView.reloadData()
@@ -141,77 +108,10 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
     }
     
     
-    
-    @IBAction func unwindToPlaylistsDetailViewController(segue: UIStoryboardSegue)
-    {
-        
-    }
+
     
     
-    // MARK: - Song control functions
-    @IBAction func rewindButtonTapped(_ sender: UIButton)
-    {
-        Answers.logCustomEvent(withName: "Rewind Button Tapped", customAttributes: nil)
-        if SongPlayerHelper.audioPlayer.currentTime > 5
-        {
-            SongPlayerHelper.audioPlayer.currentTime = 0
-        }
-        else
-        {
-            if let rowOfPreviousSong = previousIndexPath?.row
-            {
-                if rowOfPreviousSong > 0
-                {
-                    tableView(tableView, didSelectRowAt: previousIndexPath!)
-                }
-            }
-        }
-    }
-    
-    @IBAction func playPauseButtonTapped(_ sender: UIButton)
-    {
-        Answers.logCustomEvent(withName: "Play/Pause Button Tapped", customAttributes: nil)
-        
-        if SongPlayerHelper.currentSong == nil
-        {
-            if !SongPlayerHelper.isSongDownloading && songs.count > 0
-            {
-                prepareForPlaySongInitial(songQueue: SongPlayerHelper.songQueue)
-            }
-        }
-        else if SongPlayerHelper.audioPlayer.isPlaying
-        {
-            let playButton = UIImage(named: "play")
-            self.playPauseButton.setImage(playButton, for: .normal)
-            SongPlayerHelper.audioPlayer.pause()
-        }
-        else
-        {
-            let pauseButton = UIImage(named: "pause")
-            self.playPauseButton.setImage(pauseButton, for: .normal)
-            SongPlayerHelper.audioPlayer.prepareToPlay()
-            SongPlayerHelper.audioPlayer.play()
-        }
-        
-    }
-    
-    @IBAction func fastForwardButtonTapped(_ sender: UIButton)
-    {
-        Answers.logCustomEvent(withName: "Fast Forward Button Tapped", customAttributes: nil)
-        
-        if let rowOfNextSong = nextIndexPath?.row
-        {
-            if rowOfNextSong < (currentPlaylist?.playlistSongs?.count)!
-            {
-                tableView(tableView, didSelectRowAt: nextIndexPath!)
-            }
-        }
-    }
-    
-    @IBAction func slide(_ sender: UISlider)
-    {
-        SongPlayerHelper.audioPlayer.currentTime = TimeInterval(songSlider.value)
-    }
+   
     
     // MARK: - Play Song Functions
     func prepareForPlaySong(index: Int, songCell: PlaylistSongsTableViewCell)
@@ -233,25 +133,13 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
             path = "id:" + (selectedSong?.id)!
         }
         SongPlayerHelper.isSongDownloading = true
-        DropboxHelper.downloadFile(song: selectedSong!, directory: path ?? "", progressBar: (downloadProgress)!, onCompletion: { (downloadedSong) in
-            SongPlayerHelper.currentSong = downloadedSong
-            
-            // present the song controls and hide the progress bar
-            UIView.animate(withDuration: 0.05) {
-                self.rewindButton.alpha = 1
-                self.fastForwardButton.alpha = 1
-                self.timeElapsedLabel.alpha = 1.0
-                self.timeRemainingLabel.alpha = 1.0
-                self.songSlider.alpha = 1.0
-                self.currentSongLabel.alpha = 1.0
-                self.currentSongLabel.text = selectedSong?.title
-                downloadProgress?.alpha = 0.0
-            }
+        DropboxHelper.downloadFileAsURL(song: selectedSong!, directory: path ?? "", progressBar: (downloadProgress)!, onCompletion: { (downloadedSongURL) in
+            SongPlayerHelper.currentSongURL = downloadedSongURL
             
             SongPlayerHelper.isSongDownloading = false
             SongPlayerHelper.currentSongIndexInQueue = (self.selectedRow?.row)!
             SongPlayerHelper.currentSongTitle = selectedSong?.title
-            self.playSong(song: SongPlayerHelper.currentSong!)
+            self.playSongAsURL(songURL: SongPlayerHelper.currentSongURL!)
             
         })
         
@@ -274,44 +162,27 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
         
         let path = "id:" + (selectedSong?.id)!
         SongPlayerHelper.isSongDownloading = true
-        DropboxHelper.downloadFile(song: selectedSong!, directory: path, progressBar: (downloadProgress)!, onCompletion: { (downloadedSong) in
-            SongPlayerHelper.currentSong = downloadedSong
-            
-            // present the song controls and hide the progress bar
-            UIView.animate(withDuration: 0.05) {
-                self.rewindButton.alpha = 1
-                self.fastForwardButton.alpha = 1
-                self.timeElapsedLabel.alpha = 1.0
-                self.timeRemainingLabel.alpha = 1.0
-                self.songSlider.alpha = 1.0
-                self.currentSongLabel.alpha = 1.0
-                self.currentSongLabel.text = selectedSong?.title
-                downloadProgress?.alpha = 0.0
-            }
+        DropboxHelper.downloadFileAsURL(song: selectedSong!, directory: path, progressBar: (downloadProgress)!, onCompletion: { (downloadedSongURL) in
+            SongPlayerHelper.currentSongURL = downloadedSongURL
             
             SongPlayerHelper.isSongDownloading = false
             SongPlayerHelper.currentSongIndexInQueue = (self.selectedRow?.row)!
-            self.playSong(song: SongPlayerHelper.currentSong!)
+            self.playSongAsURL(songURL: SongPlayerHelper.currentSongURL!)
             
         })
         
     }
     
     // Function that handles playing the song with AVAudioPlayer
-    func playSong(song: Data)
+    func playSongAsURL(songURL: URL)
     {
         
         do {
             // sets the default image to pause since the player presents itself when a song is playing
-            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            SongPlayerHelper.audioPlayer = try AVAudioPlayer(data: SongPlayerHelper.currentSong!)
+            SongPlayerHelper.audioPlayer = try AVAudioPlayer(contentsOf: songURL)
             SongPlayerHelper.audioPlayer.delegate = self
             SongPlayerHelper.audioPlayer.prepareToPlay()
             
-            // initialize slider for song
-            self.songSlider.value = 0.0
-            self.songSlider.maximumValue = Float(SongPlayerHelper.audioPlayer.duration)
-            //            self.timeRemainingLabel.text = String(self.audioPlayer.duration)
             
             
             
@@ -350,57 +221,19 @@ class PlaylistDetailViewController: UIViewController, AVAudioPlayerDelegate, UIT
     }
     
     // Utility function for the slider
-    func updateTime(_ timer: Timer)
+    @objc func updateTime(_ timer: Timer)
     {
         // Update the time labels
         let (minElapsed, secElapsed) = secondsToMinutesSeconds(seconds: Int(SongPlayerHelper.audioPlayer.currentTime))
         let (minRemaining, secRemaining) = secondsToMinutesSeconds(seconds: (Int(SongPlayerHelper.audioPlayer.duration-SongPlayerHelper.audioPlayer.currentTime)))
         
-        if secElapsed < 10
-        {
-            SongPlayerHelper.currentSongTimeElapsed = "\(minElapsed):0\(secElapsed)"
-            self.timeElapsedLabel.text = SongPlayerHelper.currentSongTimeElapsed
-        }
-        else
-        {
-            SongPlayerHelper.currentSongTimeElapsed = "\(minElapsed):\(secElapsed)"
-            self.timeElapsedLabel.text = SongPlayerHelper.currentSongTimeElapsed
-            
-        }
         
-        if secRemaining < 10
-        {
-            SongPlayerHelper.currentSongTimeRemaining = "-\(minRemaining):0\(secRemaining)"
-            self.timeRemainingLabel.text = SongPlayerHelper.currentSongTimeRemaining
-        }
-        else
-        {
-            SongPlayerHelper.currentSongTimeRemaining = "-\(minRemaining):\(secRemaining)"
-            self.timeRemainingLabel.text = SongPlayerHelper.currentSongTimeRemaining
-        }
-        
-        // update the slider
-        songSlider.maximumValue = Float(SongPlayerHelper.audioPlayer.duration)
-        songSlider.value = Float(SongPlayerHelper.audioPlayer.currentTime)
-        currentSongLabel.text = SongPlayerHelper.currentSongTitle
-        
-        
-        
-        // If a song is not playing, show the play button
-        if !SongPlayerHelper.audioPlayer.isPlaying
-        {
-            playPauseButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
-        }
-        else
-        {
-            playPauseButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-        }
     }
     
     // Cancel the download of the song at the given filepath
     func cancelDownload(forSongAt filePath: String)
     {
-        DropboxHelper.cancelDownloadingFile(directory: filePath, onCompletion: { (done) in
+        DropboxHelper.cancelDownloadingFile(directory: filePath, onCompletion: { () in
             
         })
     }
@@ -422,6 +255,7 @@ extension PlaylistDetailViewController: UITableViewDataSource, UITableViewDelega
         let song = (currentPlaylist?.playlistSongs?.object(at: indexPath.row) as! Song)
         cell.songTitleLabel.text = text
         cell.downloadProgressBar.progress = song.downloadPercent
+        cell.downloadProgressBar.alpha = 0
         if indexPath.row == 0
         {
             indexPathOfFirstSong = indexPath

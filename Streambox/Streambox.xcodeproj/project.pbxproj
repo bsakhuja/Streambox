@@ -16,7 +16,6 @@
 		0605CEE61F10315A00FA77AC /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0605CEE51F10315A00FA77AC /* Playlists.storyboard */; };
 		0605CEE81F10316E00FA77AC /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEE71F10316E00FA77AC /* PlaylistsViewController.swift */; };
 		0605CEEA1F10317500FA77AC /* SongsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEE91F10317500FA77AC /* SongsViewController.swift */; };
-		0605CEEC1F10319E00FA77AC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEEB1F10319E00FA77AC /* MainTabBarViewController.swift */; };
 		0605CEEE1F10332400FA77AC /* PlaylistDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0605CEED1F10332400FA77AC /* PlaylistDetailViewController.swift */; };
 		060960EF1F314AB300A57606 /* SongControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060960EE1F314AB200A57606 /* SongControlsView.swift */; };
 		060D194D1F2F967A00F8F825 /* SongDownloadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D194C1F2F967A00F8F825 /* SongDownloadProgressView.swift */; };
@@ -55,6 +54,7 @@
 		06F24BEC1F0F03B9009FA14D /* SelectFolders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06F24BEB1F0F03B9009FA14D /* SelectFolders.storyboard */; };
 		06F24BEE1F0F03D5009FA14D /* SelectFoldersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F24BED1F0F03D5009FA14D /* SelectFoldersViewController.swift */; };
 		06F71E0C1F2A4F1E000A83E5 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F71E0B1F2A4F1E000A83E5 /* CoreDataHelper.swift */; };
+		9EF82754EE61A28456FE5712 /* Pods_Streambox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C7BEDF38123DDA8E408ED0 /* Pods_Streambox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,7 +81,6 @@
 		0605CEE51F10315A00FA77AC /* Playlists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
 		0605CEE71F10316E00FA77AC /* PlaylistsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
 		0605CEE91F10317500FA77AC /* SongsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongsViewController.swift; sourceTree = "<group>"; };
-		0605CEEB1F10319E00FA77AC /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		0605CEED1F10332400FA77AC /* PlaylistDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistDetailViewController.swift; sourceTree = "<group>"; };
 		060960EE1F314AB200A57606 /* SongControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongControlsView.swift; sourceTree = "<group>"; };
 		060D194C1F2F967A00F8F825 /* SongDownloadProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDownloadProgressView.swift; sourceTree = "<group>"; };
@@ -134,6 +133,7 @@
 			files = (
 				06EABBDE1F390C110003F581 /* Pods_Streambox.framework in Frameworks */,
 				06262C951F200FD0006878B1 /* AVFoundation.framework in Frameworks */,
+				9EF82754EE61A28456FE5712 /* Pods_Streambox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +234,6 @@
 		063FE64D1F0EF8E800311EA7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0605CEEB1F10319E00FA77AC /* MainTabBarViewController.swift */,
 				0605CEE91F10317500FA77AC /* SongsViewController.swift */,
 				0605CEE71F10316E00FA77AC /* PlaylistsViewController.swift */,
 				0605CEED1F10332400FA77AC /* PlaylistDetailViewController.swift */,
@@ -353,12 +352,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Brian Sakhuja";
 				TargetAttributes = {
 					063FE6331F0EF8B700311EA7 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = DUCAN2M87U;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -496,7 +496,6 @@
 				0605CEDC1F10228D00FA77AC /* DropboxHelper.swift in Sources */,
 				060960EF1F314AB300A57606 /* SongControlsView.swift in Sources */,
 				069CDAFE1F142A0500F4CBE8 /* Item.swift in Sources */,
-				0605CEEC1F10319E00FA77AC /* MainTabBarViewController.swift in Sources */,
 				0605CEDF1F102AB700FA77AC /* FoldersTableViewCell.swift in Sources */,
 				06F24BEE1F0F03D5009FA14D /* SelectFoldersViewController.swift in Sources */,
 				060524A21F22B6DE004E7551 /* Entry.swift in Sources */,
@@ -538,7 +537,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -546,7 +547,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -575,6 +580,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
 			};
 			name = Debug;
 		};
@@ -588,7 +594,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -596,7 +604,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -617,6 +629,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				USE_HEADERMAP = NO;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -631,7 +644,6 @@
 				DEVELOPMENT_TEAM = DUCAN2M87U;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SDKROOT)/../../../../../../../../../Users/briansakhuja/Library/Developer/Xcode/DerivedData/Streambox-elcanujvqazkauhibikrnjvhizyz/Build/Products/Debug-iphoneos",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Streambox/Info.plist;
@@ -639,7 +651,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.briansakhuja.Streambox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -662,7 +675,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.briansakhuja.Streambox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;

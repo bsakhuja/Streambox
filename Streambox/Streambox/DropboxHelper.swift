@@ -163,7 +163,7 @@ struct DropboxHelper
     
     
     // Cancel downloading a file at the given directory
-    static func cancelDownloadingFile(directory: String, onCompletion: @escaping (Void) -> Void)
+    static func cancelDownloadingFile(directory: String, onCompletion: @escaping () -> Void)
     {
         if let client = DropboxClientsManager.authorizedClient
         {
