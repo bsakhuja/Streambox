@@ -14,50 +14,27 @@ struct DropboxHelper
     static var counter = 0
     
     static var downloadProgress = 0.0
+    static let client = DropboxClientsManager.authorizedClient
     
     // On completion, returns the entries in the given directory as Entry objects
-    static func getItemsAsMetadata(directory directoryPath: String, onCompletion: @escaping ([Item]?) -> Void) {
-        // Verify user is logged into Dropbox
-        if let client = DropboxClientsManager.authorizedClient {
-            client.files.listFolder(path: directoryPath).response { response, error in
-                if let result = response {
-                    
-                    let itemsInitialized = result.entries.map { Item(itemMetadata: $0, rootDirectory: directoryPath, id: ($0 as? Files.FileMetadata)?.id ?? "") }
-                    onCompletion(itemsInitialized)
-                    
-                } else {
-                    onCompletion(nil)
-                }
-            }
-        }
-    }
-    
-    
-    // On completion, returns all items in given directory
     static func getItems(directory directoryPath: String, onCompletion: @escaping ([Item]?) -> Void) {
-        var filesInDirectory = [Item]()
-        
-        // Verify user is logged into Dropbox
-        if let client = DropboxClientsManager.authorizedClient {
-            
-            client.files.listFolder(path: directoryPath).response { response, error in
-                if let result = response {
-                    for entry in result.entries {
-                        let id = (entry as? Files.FileMetadata)?.id.components(separatedBy: ":")[1]
-                        let newItem = Item(itemMetadata: (entry as? Files.FileMetadata)!, rootDirectory: directoryPath, id: id ?? "")
-                        
-                        
-                        filesInDirectory.append(newItem)
-                    }
-                    onCompletion(filesInDirectory)
-                    
-                } else {
-                    print(error!)
-                    onCompletion(nil)
+        var items = [Item]()
+        client?.files?.listFolder(path: directoryPath).response { response, error in
+            if let result = response {
+                for entry in result.entries
+                {
+                    let newItem = Item(itemMetadata: entry)
+                    items.append(newItem)
                 }
+                onCompletion(items)
+                
+            } else {
+                onCompletion(nil)
             }
         }
+        
     }
+    
     
     // Checks if item has a subdirectory. Any given file should not have a subdirectory.
     // Parameters
@@ -67,13 +44,13 @@ struct DropboxHelper
     // - True, if given name for folder contains files
     // - False, if given name for file or folder does not contain any files
     
-    static func hasSubdirectory(filePath: String, onCompletion: @escaping (Bool?) -> Void)
+    static func hasSubdirectory(id: String, onCompletion: @escaping (Bool?) -> Void)
     {
         // Verify user is logged into Dropbox
         if let client = DropboxClientsManager.authorizedClient
         {
             // Construct string for the full path
-            client.files.listFolder(path: filePath).response { response, error in
+            client.files.listFolder(path: id).response { response, error in
                 if response != nil
                 {
                     if response != nil

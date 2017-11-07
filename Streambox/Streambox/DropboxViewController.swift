@@ -17,11 +17,13 @@ class DropboxViewController: UIViewController, NVActivityIndicatorViewable
     // MARK: - Properties
     var items = [Item]() // the items displayed in the table view
     var parentItem: Item?
+    var currentDirectory: String = "" // the path of the current instantiated dropbox view controller
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - VC Lifecycle
     override func viewDidLoad()
     {
+//        CoreDataHelper.deleteAllUsers()
         // Update the title
         self.navigationItem.title = parentItem?.name ?? "Dropbox"
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -50,33 +52,13 @@ class DropboxViewController: UIViewController, NVActivityIndicatorViewable
         startAnimating(CGSize(width: 50, height: 50), type: .ballClipRotate)
         
         // Get the items for the given path
-        DropboxHelper.getItemsAsMetadata(directory: parentItem?.itemMetadata.pathLower ?? "") { (items) in
+        DropboxHelper.getItems(directory: parentItem?.itemMetadata.pathLower ?? "") { (items) in
             self.items = items!
             self.tableView.reloadData()
             
             // hide activity indicator
             self.stopAnimating()
         }
-        
-    }
-    
-    // Initialize the items
-    func initializeItems(rootPath: String)
-    {
-        DropboxHelper.getItems(directory: rootPath, onCompletion: { (retrievedItems) in
-            if let retrievedItems = retrievedItems
-            {
-                for item in retrievedItems
-                {
-                    self.items.append(item)
-                }
-            }
-            
-            // Update UI on main thread
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        })
         
     }
 
@@ -96,14 +78,13 @@ extension DropboxViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DropboxTableViewCell") as! DropboxTableViewCell
-        
         let item = items[indexPath.row]
         let filePath = item.itemMetadata.pathDisplay
         cell.itemOfThisCell = item
         cell.itemNameLabel.text = item.name
         
         // Check if selected item contains items. If so, show folder chevron
-        DropboxHelper.hasSubdirectory(filePath: filePath ?? "", onCompletion: { (containsFiles) in
+        DropboxHelper.hasSubdirectory(id: filePath ?? "", onCompletion: { (containsFiles) in
             if containsFiles != nil
             {
                 cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
@@ -121,7 +102,7 @@ extension DropboxViewController: UITableViewDataSource, UITableViewDelegate
         let filePath = item.itemMetadata.pathDisplay
         
         // Check if selected item contains items. If so, present new view controller with folder as the title
-        DropboxHelper.hasSubdirectory(filePath: filePath ?? "", onCompletion: { (containsFiles) in
+        DropboxHelper.hasSubdirectory(id: filePath ?? "", onCompletion: { (containsFiles) in
             if containsFiles != nil
             {
                 let selectedCell = tableView.cellForRow(at: indexPath)
@@ -145,7 +126,7 @@ extension DropboxViewController: UITableViewDataSource, UITableViewDelegate
     {
         let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "DropboxViewController") as! DropboxViewController
         destinationVC.parentItem = item
-//        destinationVC.indexPath = indexPath
+        destinationVC.currentDirectory = currentDirectory // not sure if this is right
         
         self.navigationController?.pushViewController(destinationVC, animated: true)
         

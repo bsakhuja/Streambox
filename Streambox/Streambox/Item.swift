@@ -15,28 +15,23 @@ class Item: NSObject {
     var nameAsNSString: NSString
     var fileNameWithoutExtension: String
     var fileNameExtension: String
-    var rootDirectory: String
-    var filePath: String
-    var isSelected = false
+    var isFolder = false
     var parent: Item?
     var children: [Item]?
     var isMusicFile = false
     var startIndex = 0
     var endIndex = 0
-    let id: String
+    let id: String = ""
     
     
     // initializer
-    init(itemMetadata: Files.Metadata, rootDirectory: String, id: String)
+    init(itemMetadata: Files.Metadata)
     {
         self.itemMetadata = itemMetadata
         self.name = itemMetadata.name
         self.nameAsNSString = name! as NSString
         self.fileNameWithoutExtension = nameAsNSString.deletingPathExtension
         self.fileNameExtension = nameAsNSString.pathExtension
-        self.rootDirectory = rootDirectory
-        self.filePath = rootDirectory + "/" + name!
-        self.id = id
         
         
         if fileNameExtension == "mp3"

@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main Tab Bar View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="ddG-Vc-ZSa">
             <objects>
-                <tabBarController storyboardIdentifier="mainVC" id="byZ-Bu-46g" customClass="MainTabBarViewController" customModule="Streambox" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainVC" id="byZ-Bu-46g" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ELH-dR-lAC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>

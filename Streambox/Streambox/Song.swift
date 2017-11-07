@@ -43,7 +43,6 @@ extension Song {
                 
                 // create new song
                 let newSong = CoreDataHelper.newSong()
-                newSong.filePath = item.filePath
                 newSong.id = item.id
                 print(item.id)
                 newSong.title = item.name

@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         
+        
         //checking github
         
         // Set up Fabric Crashlytics
@@ -38,9 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
-            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "mainVC")
             
             self.window?.rootViewController = initialViewController
@@ -63,6 +62,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch authResult {
             case .success:
                 print("Success! User is logged into Dropbox.")
+                // user is logged in and we create a user
+                let newUser = CoreDataHelper.newUser()
+                users.append(newUser)
+                
+                // transfer to dropbox view
+                let initialViewController = UIStoryboard.initialViewController(for: .main)
+                self.window?.rootViewController = initialViewController
+                self.window?.makeKeyAndVisible()
+                
+                
+                
+                
+                
+            
             case .cancel:
                 print("Authorization flow was manually canceled by user!")
             case .error(_, let description):
@@ -71,6 +84,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
+    
+    
+
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
