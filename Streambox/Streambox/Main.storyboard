@@ -1,18 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="byZ-Bu-46g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pOm-vf-zRQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Pulley View Controller-->
+        <scene sceneID="m2I-BM-9kf">
+            <objects>
+                <viewController id="pOm-vf-zRQ" customClass="PulleyViewController" customModule="Pulley" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xp3-Yp-PYT"/>
+                        <viewControllerLayoutGuide type="bottom" id="4dJ-De-Xtg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bu2-K5-dgz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XAq-9b-0eg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
+                                <connections>
+                                    <segue destination="byZ-Bu-46g" kind="embed" id="46U-A0-NlF"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DtS-f4-FYc">
+                                <rect key="frame" x="0.0" y="333.5" width="375" height="333.5"/>
+                                <connections>
+                                    <segue destination="YhG-vh-wDJ" kind="embed" id="edC-fh-iJb"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4dJ-De-Xtg" firstAttribute="top" secondItem="DtS-f4-FYc" secondAttribute="bottom" id="4mh-HX-RET"/>
+                            <constraint firstAttribute="trailing" secondItem="XAq-9b-0eg" secondAttribute="trailing" id="IER-u9-Rmq"/>
+                            <constraint firstItem="XAq-9b-0eg" firstAttribute="top" secondItem="bu2-K5-dgz" secondAttribute="top" id="Kz9-U4-ets"/>
+                            <constraint firstItem="DtS-f4-FYc" firstAttribute="top" secondItem="XAq-9b-0eg" secondAttribute="bottom" id="Vi9-80-I4J"/>
+                            <constraint firstAttribute="trailing" secondItem="DtS-f4-FYc" secondAttribute="trailing" id="a0a-MQ-Yoq"/>
+                            <constraint firstItem="DtS-f4-FYc" firstAttribute="height" secondItem="XAq-9b-0eg" secondAttribute="height" id="c5P-sj-xLc"/>
+                            <constraint firstItem="DtS-f4-FYc" firstAttribute="leading" secondItem="bu2-K5-dgz" secondAttribute="leading" id="sZC-LJ-YKQ"/>
+                            <constraint firstItem="XAq-9b-0eg" firstAttribute="leading" secondItem="bu2-K5-dgz" secondAttribute="leading" id="uxJ-LM-QQS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="drawerContentContainerView" destination="DtS-f4-FYc" id="d1q-Dq-A8v"/>
+                        <outlet property="primaryContentContainerView" destination="XAq-9b-0eg" id="kgf-PY-Fxu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3f2-tF-D7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-497" y="185"/>
+        </scene>
+        <!--Primary Content Container View-->
         <scene sceneID="ddG-Vc-ZSa">
             <objects>
-                <tabBarController storyboardIdentifier="mainVC" id="byZ-Bu-46g" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="mainVC" id="byZ-Bu-46g" customClass="PrimaryContentContainerView" customModule="Streambox" customModuleProvider="target" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="ELH-dR-lAC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -28,7 +80,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4WQ-dh-hOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="5"/>
+            <point key="canvasLocation" x="575" y="-112"/>
         </scene>
         <!--DropboxViewer-->
         <scene sceneID="Uyl-nI-sM4">
@@ -38,7 +90,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TA1-y8-Aql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="189" y="533"/>
+            <point key="canvasLocation" x="374" y="272"/>
         </scene>
         <!--Playlists-->
         <scene sceneID="R3L-nU-M7m">
@@ -48,11 +100,84 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQp-5V-ZQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918" y="533"/>
+            <point key="canvasLocation" x="806" y="272"/>
+        </scene>
+        <!--Drawer Content Container View-->
+        <scene sceneID="07L-8h-grl">
+            <objects>
+                <viewController id="YhG-vh-wDJ" customClass="drawerContentContainerView" customModule="Streambox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jUP-pK-4Kl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="333.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTD-D0-hIK">
+                                <rect key="frame" x="172.5" y="10" width="30" height="5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="Nwt-4q-pTd"/>
+                                    <constraint firstAttribute="width" constant="30" id="lvD-AQ-QIe"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Name - Artist Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F23-NX-In7">
+                                <rect key="frame" x="76" y="25" width="263" height="18"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfi-w7-tWT">
+                                <rect key="frame" x="36" y="25" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="LmR-FG-zAH"/>
+                                    <constraint firstAttribute="height" constant="20" id="aGb-gW-5By"/>
+                                </constraints>
+                                <state key="normal" image="play"/>
+                                <connections>
+                                    <action selector="playPauseButtonTapped:" destination="YhG-vh-wDJ" eventType="touchUpInside" id="Eon-wD-DOt"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white" translatesAutoresizingMaskIntoConstraints="NO" id="mGX-Ba-kB2">
+                                <rect key="frame" x="88" y="63" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="RaD-67-F5f"/>
+                                    <constraint firstAttribute="height" constant="200" id="ZdE-ZC-0CT"/>
+                                </constraints>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="MaQ-Y7-f59">
+                                <rect key="frame" x="18" y="283" width="339" height="31"/>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mTD-D0-hIK" firstAttribute="centerX" secondItem="jUP-pK-4Kl" secondAttribute="centerX" id="59b-Pu-UrF"/>
+                            <constraint firstItem="MaQ-Y7-f59" firstAttribute="leading" secondItem="jUP-pK-4Kl" secondAttribute="leading" constant="20" id="6DR-Kz-pPL"/>
+                            <constraint firstItem="F23-NX-In7" firstAttribute="leading" secondItem="Pfi-w7-tWT" secondAttribute="trailing" constant="20" id="84l-jX-txn"/>
+                            <constraint firstItem="F23-NX-In7" firstAttribute="top" secondItem="jUP-pK-4Kl" secondAttribute="topMargin" constant="25" id="BZg-vB-VGf"/>
+                            <constraint firstAttribute="trailing" secondItem="MaQ-Y7-f59" secondAttribute="trailing" constant="20" id="I8M-Z4-35W"/>
+                            <constraint firstItem="mTD-D0-hIK" firstAttribute="top" secondItem="jUP-pK-4Kl" secondAttribute="topMargin" constant="10" id="Icb-cv-Eau"/>
+                            <constraint firstItem="mGX-Ba-kB2" firstAttribute="centerX" secondItem="jUP-pK-4Kl" secondAttribute="centerX" id="If4-yn-pRm"/>
+                            <constraint firstItem="mGX-Ba-kB2" firstAttribute="top" secondItem="F23-NX-In7" secondAttribute="bottom" constant="20" id="O7F-uJ-GnK"/>
+                            <constraint firstItem="MaQ-Y7-f59" firstAttribute="top" secondItem="mGX-Ba-kB2" secondAttribute="bottom" constant="20" id="e7P-zb-JlL"/>
+                            <constraint firstItem="Pfi-w7-tWT" firstAttribute="leading" secondItem="jUP-pK-4Kl" secondAttribute="leadingMargin" constant="20" id="fjN-Xb-OcK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="F23-NX-In7" secondAttribute="trailing" constant="20" id="mSY-Ig-5Ye"/>
+                            <constraint firstItem="Pfi-w7-tWT" firstAttribute="top" secondItem="jUP-pK-4Kl" secondAttribute="topMargin" constant="25" id="qX4-jl-a75"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="albumArt" destination="mGX-Ba-kB2" id="kRg-jB-wtO"/>
+                        <outlet property="handle" destination="mTD-D0-hIK" id="4nu-YX-bRm"/>
+                        <outlet property="playPauseButton" destination="Pfi-w7-tWT" id="Ciq-76-30M"/>
+                        <outlet property="songInfoLabel" destination="F23-NX-In7" id="Fsf-mu-t4B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c6Y-72-3Hn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="573.60000000000002" y="548.7256371814093"/>
         </scene>
     </scenes>
     <resources>
+        <image name="play" width="11" height="13"/>
         <image name="playlist" width="20" height="20"/>
         <image name="song" width="20" height="20"/>
+        <image name="white" width="128" height="128"/>
     </resources>
 </document>

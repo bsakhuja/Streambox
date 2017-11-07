@@ -45,6 +45,8 @@
 		069CDAFC1F141FD800F4CBE8 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDAFB1F141FD800F4CBE8 /* Dictionary.swift */; };
 		069CDAFE1F142A0500F4CBE8 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CDAFD1F142A0500F4CBE8 /* Item.swift */; };
 		069DA1C31F30F39E00A0B285 /* SongPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069DA1C21F30F39E00A0B285 /* SongPlayerHelper.swift */; };
+		06AF5BD81FB227AE002C0F57 /* DrawerContentContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AF5BD71FB227AE002C0F57 /* DrawerContentContainerView.swift */; };
+		06AF5BDA1FB228BE002C0F57 /* PrimaryContentContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AF5BD91FB228BE002C0F57 /* PrimaryContentContainerView.swift */; };
 		06DCB7F71F21234900E18AC6 /* SongControllerToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DCB7F61F21234900E18AC6 /* SongControllerToolbar.swift */; };
 		06DCB7FA1F2123CB00E18AC6 /* SearchSongsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DCB7F91F2123CB00E18AC6 /* SearchSongsBar.swift */; };
 		06EABBDE1F390C110003F581 /* Pods_Streambox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B43EEBE75939C635CFCB7B /* Pods_Streambox.framework */; };
@@ -111,6 +113,8 @@
 		069CDAFB1F141FD800F4CBE8 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		069CDAFD1F142A0500F4CBE8 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		069DA1C21F30F39E00A0B285 /* SongPlayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongPlayerHelper.swift; sourceTree = "<group>"; };
+		06AF5BD71FB227AE002C0F57 /* DrawerContentContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerContentContainerView.swift; sourceTree = "<group>"; };
+		06AF5BD91FB228BE002C0F57 /* PrimaryContentContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryContentContainerView.swift; sourceTree = "<group>"; };
 		06DCB7F61F21234900E18AC6 /* SongControllerToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongControllerToolbar.swift; sourceTree = "<group>"; };
 		06DCB7F91F2123CB00E18AC6 /* SearchSongsBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSongsBar.swift; sourceTree = "<group>"; };
 		06F24BE21F0EFB2C009FA14D /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -232,12 +236,14 @@
 			isa = PBXGroup;
 			children = (
 				06F24BED1F0F03D5009FA14D /* DropboxViewController.swift */,
-				0605CEE91F10317500FA77AC /* SongsViewController.swift */,
+				06AF5BD71FB227AE002C0F57 /* DrawerContentContainerView.swift */,
 				0605CEE71F10316E00FA77AC /* PlaylistsViewController.swift */,
+				0605CEE91F10317500FA77AC /* SongsViewController.swift */,
 				0605CEED1F10332400FA77AC /* PlaylistDetailViewController.swift */,
 				069CDAF91F13F2E400F4CBE8 /* AddSongsToPlaylistViewController.swift */,
 				063FE6391F0EF8B700311EA7 /* LoginViewController.swift */,
 				061DF8E41F38CFA500C05EDE /* SettingsViewController.swift */,
+				06AF5BD91FB228BE002C0F57 /* PrimaryContentContainerView.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -485,6 +491,7 @@
 				0605CEEA1F10317500FA77AC /* SongsViewController.swift in Sources */,
 				063FE6401F0EF8B700311EA7 /* Streambox.xcdatamodeld in Sources */,
 				069CDAF81F13F2CF00F4CBE8 /* AddSongsToPlaylistTableViewCell.swift in Sources */,
+				06AF5BDA1FB228BE002C0F57 /* PrimaryContentContainerView.swift in Sources */,
 				0605CEEE1F10332400FA77AC /* PlaylistDetailViewController.swift in Sources */,
 				06DCB7FA1F2123CB00E18AC6 /* SearchSongsBar.swift in Sources */,
 				0605CEE81F10316E00FA77AC /* PlaylistsViewController.swift in Sources */,
@@ -503,6 +510,7 @@
 				063FE6381F0EF8B700311EA7 /* AppDelegate.swift in Sources */,
 				06F24BE81F0F0209009FA14D /* Playlist.swift in Sources */,
 				063F6ADF1F2BA0C10001FB07 /* PlaylistSongsTableViewCell.swift in Sources */,
+				06AF5BD81FB227AE002C0F57 /* DrawerContentContainerView.swift in Sources */,
 				069CDAFA1F13F2E400F4CBE8 /* AddSongsToPlaylistViewController.swift in Sources */,
 				06DCB7F71F21234900E18AC6 /* SongControllerToolbar.swift in Sources */,
 				069CDAF41F13EC6700F4CBE8 /* PlaylistsTableViewCell.swift in Sources */,
