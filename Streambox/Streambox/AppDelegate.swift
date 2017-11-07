@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Update tab bar font
         // Swift 4 updated
         UITabBarItem.appearance().setTitleTextAttributes([ NSAttributedStringKey.font: UIFont(name: "Lato-Light", size: 13)!], for: .normal)
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor], for: <#T##UIControlState#>)
         
         // If the user is logged in, present the main storyboard
         if users.count > 0

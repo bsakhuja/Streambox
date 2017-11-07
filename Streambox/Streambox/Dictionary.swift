@@ -17,5 +17,6 @@ struct Dictionary {
     
     struct UI {
         static let appColor = UIColor(red:0.00, green:0.41, blue:0.85, alpha:1.0)
+        static let tableViewCellHeight: CGFloat = 50; // the height of each table view cell in the app
     }
 }

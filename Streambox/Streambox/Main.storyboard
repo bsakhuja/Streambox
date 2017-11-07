@@ -14,12 +14,12 @@
             <objects>
                 <tabBarController storyboardIdentifier="mainVC" id="byZ-Bu-46g" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="ELH-dR-lAC">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="ELH-dR-lAC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <color key="selectedImageTintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.050980392159999999" green="0.64705882349999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="TwB-R8-Crf" kind="relationship" relationship="viewControllers" id="MlC-cd-5cw"/>

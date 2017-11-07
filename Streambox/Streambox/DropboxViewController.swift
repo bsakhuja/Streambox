@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import AVFoundation
+import MediaPlayer
 import UIKit
 import SwiftyDropbox
 import NVActivityIndicatorView
@@ -23,7 +25,7 @@ class DropboxViewController: UIViewController, NVActivityIndicatorViewable
     // MARK: - VC Lifecycle
     override func viewDidLoad()
     {
-//        CoreDataHelper.deleteAllUsers()
+        //        CoreDataHelper.deleteAllUsers()
         // Update the title
         self.navigationItem.title = parentItem?.name ?? "Dropbox"
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -49,11 +51,15 @@ class DropboxViewController: UIViewController, NVActivityIndicatorViewable
         tableView.dataSource = self
         
         // show activity indicator
-        startAnimating(CGSize(width: 50, height: 50), type: .ballClipRotate)
+        startAnimating(CGSize(width: 50, height: 50), type: .ballPulse)
         
         // Get the items for the given path
         DropboxHelper.getItems(directory: parentItem?.itemMetadata.pathLower ?? "") { (items) in
-            self.items = items!
+            if let returnedItems = items
+            {
+                self.items = returnedItems
+            }
+            
             self.tableView.reloadData()
             
             // hide activity indicator
@@ -61,7 +67,7 @@ class DropboxViewController: UIViewController, NVActivityIndicatorViewable
         }
         
     }
-
+    
     
 }
 
@@ -84,12 +90,17 @@ extension DropboxViewController: UITableViewDataSource, UITableViewDelegate
         cell.itemNameLabel.text = item.name
         
         // Check if selected item contains items. If so, show folder chevron
-        DropboxHelper.hasSubdirectory(id: filePath ?? "", onCompletion: { (containsFiles) in
-            if containsFiles != nil
-            {
-                cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
-            }
-        })
+        //        DropboxHelper.hasSubdirectory(id: filePath ?? "", onCompletion: { (containsFiles) in
+        //            if containsFiles != nil
+        //            {
+        //                cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        //            }
+        //        })
+        if let client = DropboxClientsManager.authorizedClient
+        {
+            //            client.files.meta
+        }
+        
         return cell
         
     }
@@ -116,7 +127,7 @@ extension DropboxViewController: UITableViewDataSource, UITableViewDelegate
     // The height of the cells
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 55
+        return Dictionary.UI.tableViewCellHeight
     }
     
     
