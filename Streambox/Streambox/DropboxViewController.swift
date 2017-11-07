@@ -126,7 +126,8 @@ extension DropboxViewController: UITableViewDataSource, UITableViewDelegate
     {
         let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "DropboxViewController") as! DropboxViewController
         destinationVC.parentItem = item
-        destinationVC.currentDirectory = currentDirectory // not sure if this is right
+        destinationVC.currentDirectory = currentDirectory
+        destinationVC.navigationItem.leftBarButtonItem = nil
         
         self.navigationController?.pushViewController(destinationVC, animated: true)
         

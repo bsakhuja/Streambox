@@ -17,7 +17,7 @@
         <!--Dropbox-->
         <scene sceneID="XKN-zE-HtM">
             <objects>
-                <viewController id="XZw-hZ-WeC" customClass="DropboxViewController" customModule="Streambox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DropboxViewController" id="XZw-hZ-WeC" customClass="DropboxViewController" customModule="Streambox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IKT-FX-6bG"/>
                         <viewControllerLayoutGuide type="bottom" id="Bbd-wX-Gfg"/>
