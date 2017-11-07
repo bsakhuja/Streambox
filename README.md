@@ -14,10 +14,10 @@ Streambox 1.0 is on the App Store for free.
 4. Tap a song to begin listening.
 
 ### Pods
-*[SwiftyDropbox](https://github.com/dropbox/SwiftyDropbox)
-*[Pulley](https://github.com/52inc/Pulley)
-*[NVActivityIndicatorView](https://github.com/ninjaprox/NVActivityIndicatorView)
-*[XLPagerTabStrip](https://github.com/xmartlabs/XLPagerTabStrip)
+* [SwiftyDropbox](https://github.com/dropbox/SwiftyDropbox)
+* [Pulley](https://github.com/52inc/Pulley)
+* [NVActivityIndicatorView](https://github.com/ninjaprox/NVActivityIndicatorView)
+* [XLPagerTabStrip](https://github.com/xmartlabs/XLPagerTabStrip)
 
 ### Issues
 Please report any issues and be as detailed as you can.
