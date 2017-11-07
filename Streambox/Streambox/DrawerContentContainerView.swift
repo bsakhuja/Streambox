@@ -57,7 +57,8 @@ extension drawerContentContainerView: PulleyDrawerViewControllerDelegate
     
     func supportedDrawerPositions() -> [PulleyPosition] {
         // You can specify the drawer positions you support. This is the same as: [.open, .partiallyRevealed, .collapsed, .closed]
-        return PulleyPosition.all
+        let acceptedPulleyPositions = [PulleyPosition.open, PulleyPosition.collapsed]
+        return acceptedPulleyPositions
     }
     
     //This function is called by Pulley anytime the size, drawer position, etc. changes. It's best to customize your VC UI based on the bottomSafeArea here (if needed).
